@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_name: MyString
+  artist_name: MyString
+  subtotal: 1
+  quantity: 1
+  item_profile_id: MyString
+
+two:
+  item_name: MyString
+  artist_name: MyString
+  subtotal: 1
+  quantity: 1
+  item_profile_id: MyString
