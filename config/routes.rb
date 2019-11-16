@@ -2,24 +2,24 @@ Rails.application.routes.draw do
 
   root 'publics/items#index'
 
-  namespace :publics do
+   scope module: :publics do
     resources :contacts, only: [:create, :new]
     get 'contacts/complete'
   end
-  namespace :publics do
+   scope module: :publics do
     resources :addresses, only: [:create, :new]
   end
-  namespace :publics do
+   scope module: :publics do
     resources :orders, only: [:create, :index, :new]
     get 'orders/complete'
   end
-  namespace :publics do
+   scope module: :publics do
     resources :carts, only: [:show, :update, :destroy, :create]
   end
-  namespace :publics do
-    resources :undusers, only: [:show, :destroy, :edit, :update]
+   scope module: :publics do
+    resources :endusers, only: [:show, :destroy, :edit, :update]
   end
-  namespace :publics do
+   scope module: :publics do
     resources :items, only: [:index, :show]
     resource :favorites, only:[:create, :destroy]
     resource :reviews, only:[:create]
