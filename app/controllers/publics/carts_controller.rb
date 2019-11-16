@@ -1,4 +1,4 @@
-class Publics::CartsController < ApplicationController
+class Publics::CartsController < Publics::ApplicationController
   def show
   end
 

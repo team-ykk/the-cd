@@ -1,4 +1,4 @@
-class Publics::ReviwesController < ApplicationController
+class Publics::ReviwesController < Publics::ApplicationController
 
 	def create
 	end
