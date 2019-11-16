@@ -2,6 +2,17 @@ Rails.application.routes.draw do
 
   root 'publics/items#index'
 
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  devise_for :endusers, controllers:{
+    sessions: 'publics/sessions',
+    passwords: 'publics/passwords',
+    registrations: 'publics/registrations'
+  }
+
    scope module: :publics do
     resources :contacts, only: [:create, :new]
     get 'contacts/complete'
@@ -61,15 +72,6 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :artists, only: [:create, :new]
   end
-  devise_for :admins, controllers: {
-  	sessions: 'admins/sessions',
-  	passwords: 'admins/passwords',
-  	registrations: 'admins/registrations'
-  }
-  devise_for :endusers, controllers:{
-  	sessions: 'endusers/sessions',
-  	passwords: 'endusers/passwords',
-  	registrations: 'endusers/registrations'
-  }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

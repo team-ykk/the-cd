@@ -1,2 +1,28 @@
-<h1>Publics::Items#show</h1>
-<p>Find me in app/views/publics/items/show.html.erb</p>
+
+<div class="container">
+	<div class="row">
+		<h2>商品詳細</h2>
+
+		<div class="col-6"><!-- ここに画像と商品の説明 -->
+			<div>
+				<%= attachment_image_tag @item, :item_profile, :fill,100, 100, format: 'jpeg' %>
+			    <p>カートに入れる</p>
+			    <p>いいね数</p>
+			    <p>レビュー数</p>
+			</div>
+			<div>
+				<%= @item.item_name %>
+				<%= @item.artist.artist_name %>
+				<%= @item.label.label_name %>
+				<%= @item.genre.genre_name %>
+				<%= @item.shipdate %>
+				<%= @item.price %>
+				<%= @item.status %>
+			</div>
+		</div>
+
+		<div class="col-6"><!-- ここに曲名　-->
+			
+		</div>
+	</div>
+</div>
