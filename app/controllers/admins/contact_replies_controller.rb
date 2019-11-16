@@ -1,4 +1,4 @@
-class Admins::ContactRepliesController < ApplicationController
+class Admins::ContactRepliesController < Admins::ApplicationController
   def new
   end
 

@@ -1,4 +1,4 @@
-class Publics::ContactsController < ApplicationController
+class Publics::ContactsController < Publics::ApplicationController
   def new
   end
 

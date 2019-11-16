@@ -1,4 +1,4 @@
-class Admins::LabelsController < ApplicationController
+class Admins::LabelsController < Admins::ApplicationController
   def new
   end
 

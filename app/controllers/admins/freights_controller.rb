@@ -1,4 +1,4 @@
-class Admins::FreightsController < ApplicationController
+class Admins::FreightsController < Admins::ApplicationController
   def edit
   end
 

@@ -1,4 +1,4 @@
-class Publics::FavoritesController < ApplicationController
+class Publics::FavoritesController < Publics::ApplicationController
 	def create
 	end
 

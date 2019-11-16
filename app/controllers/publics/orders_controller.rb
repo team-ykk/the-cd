@@ -1,4 +1,4 @@
-class Publics::OrdersController < ApplicationController
+class Publics::OrdersController < Publics::ApplicationController
   def index
   end
 
