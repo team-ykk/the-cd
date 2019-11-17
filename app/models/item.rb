@@ -10,6 +10,7 @@ class Item < ApplicationRecord
     belongs_to :artist
     has_many :cart_items
     has_many :carts, through: :cart_items
+    attachment :item_profile
 
     def self.search(search)
     if search
