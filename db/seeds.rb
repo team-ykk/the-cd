@@ -15,6 +15,5 @@ Item.create!(
 	item_profile_id:'box3',
 	genre_id: 1,
 	label_id: 1,
-	artist_id: 1
-
+	artist_id: 1,
 	)

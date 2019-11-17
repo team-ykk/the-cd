@@ -14,10 +14,10 @@
 
   	<div class="col-md-12">
   		<%= @items.each do |item| %>
-  		<%= item.item_profile_id %>
+  		<%= item.attachment_image_tag @items, :item_profile, :fill, 100,100,format: 'jpeg' %>
   		<%= item.shipdate %>
   		<%= item.item_name %>
-  		<%= item.artists.artist_name %>
+  		<%= item.artist.artist_name %>
   		<p>いいね数</p>
   		<p>レビュー数</p>
   		<%= item.price %>
