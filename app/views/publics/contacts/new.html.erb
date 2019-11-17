@@ -1,0 +1,29 @@
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			<h1>お問い合わせフォーム</h1>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			<%= form_for @contact do |f| %>
+		        <% if f.errors.any? %>
+		          <%= f.errors.count %>件のerrorが発生しました
+		            <% f.errors.full_messages.each do |message| %>
+		            <li><%= message %></li>
+		          <% end %>
+		        <% end %>
+				<div class="form-group">
+					<input type="text" class="form-control" id="contacts" placeholder="お問合せ内容を入力してください">
+				</div>
+				 <%= f.submit "送信", class: "btn btn-block btn-primary" %>
+			<% end %>
+
+<style>
+.container{
+	margin-top: 40px;
+}
+</style>
+
