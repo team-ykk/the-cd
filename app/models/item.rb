@@ -9,7 +9,7 @@ class Item < ApplicationRecord
     belongs_to :label
     belongs_to :artist
     has_many :cart_items
-    has_many :carts, through: :cart_itemsz
+    has_many :carts, through: :cart_items
 
     def self.search(search)
     if search
