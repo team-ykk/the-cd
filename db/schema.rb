@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_112608) do
+ActiveRecord::Schema.define(version: 2019_11_17_034135) do
 
   create_table "additems", force: :cascade do |t|
     t.integer "add_item"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
   end
 
   create_table "addresses", force: :cascade do |t|
@@ -26,6 +27,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.integer "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "enduser_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -56,18 +58,22 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.integer "subtotal"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.integer "enduser_id"
   end
 
   create_table "carts", force: :cascade do |t|
     t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "enduser_id"
   end
 
   create_table "contact_replies", force: :cascade do |t|
     t.text "reply_content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "contact_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -75,12 +81,14 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.boolean "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "enduser_id"
   end
 
   create_table "discs", force: :cascade do |t|
     t.string "disc_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
   end
 
   create_table "endusers", force: :cascade do |t|
@@ -105,6 +113,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.string "address"
     t.integer "phone_number"
     t.datetime "deleted_at"
+    t.integer "cart_id"
+    t.integer "address_id"
     t.index ["email"], name: "index_endusers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_endusers_on_reset_password_token", unique: true
   end
@@ -112,6 +122,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
   create_table "favorites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.integer "enduser_id"
   end
 
   create_table "freights", force: :cascade do |t|
@@ -134,6 +146,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.string "item_profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -146,6 +159,9 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "genre_id"
+    t.integer "label_id"
+    t.integer "artist_id"
     t.index ["item_name"], name: "index_items_on_item_name"
   end
 
@@ -161,12 +177,16 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "enduser_id"
+    t.integer "address_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.text "review_content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "enduser_id"
+    t.integer "item_id"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -174,6 +194,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_112608) do
     t.integer "song_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "disc_id"
   end
 
   create_table "taxes", force: :cascade do |t|

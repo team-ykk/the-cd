@@ -1,7 +1,8 @@
 class Publics::ItemsController < Publics::ApplicationController
 
   def index
-  	@items = Item.page(params[:page]).reverse_order
+   @items = Item.search(params[:search])
+
   end
 
   def show

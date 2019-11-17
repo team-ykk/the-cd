@@ -1,10 +1,18 @@
 
 <div class="container">
-  <div class="row">
+  <div class="row-md-10">
   	<h2>商品一覧</h2>
-  	<div class="col">
-  		<p>発売日順・いいね順</p>
-  		<p>検索機能</p>
+    <p>発売日順・<%= link_to "いいね順", items_ranking_path %></p>
+    <p>検索機能</p>
+
+    <%= form_tag items_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+    <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :item_name => nil %>
+    </p>
+    <% end %>
+
+  	<div class="col-md-12">
   		<%= @items.each do |item| %>
   		<%= item.item_profile_id %>
   		<%= item.shipdate %>
@@ -14,7 +22,8 @@
   		<p>レビュー数</p>
   		<%= item.price %>
   		<% end %>
-  		<%= paginate @items, class: "paginate" %>
+
   	</div>
   </div>
 </div>
+
