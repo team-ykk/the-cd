@@ -3,6 +3,9 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def new
+    @item = Item.new
+    @disc = @item.discs.build
+    @song = @disc.songs.build
   end
 
   def show
@@ -21,5 +24,11 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def ranking
+  end
+  private
+  def item_params
+    params.require(:item).permit(:itme_name, :shipdate, :price, :stock, :status, :item_profile,
+     :genre_id, :lavel_id, :artist_id, discs_attributes: [:id, :disc_name, :_destroy,
+      songs_attributes:[:id, :song_name, :song_number, :_destroy]])
   end
 end
