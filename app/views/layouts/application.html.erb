@@ -7,9 +7,76 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/50e1df26d8.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <header id="header" class="">
+      <div class="header-top">
+        <nav class="nav navbar-nav navbar-left nav-position">
+          <span class="nav-title">The CD</span>
+        </nav>
+        <nav class="nav-right">
+          <% if enduser_signed_in? %>
+          <span>〇〇さんがログインしています</span><br>
+            <ul>
+              <li class="navlist">
+                <%= link_to "カート一覧", cart_path(current_enduser.cart.id) %>
+              </li>
+              <li class="navlist">
+                <%= link_to "マイページ", enduser_path(current_enduser) %>
+              </li>
+              <li class="navlist">
+                <%= link_to "ログアウト", destroy_enduser_session_path %>
+              </li>
+            </ul>
+          <% elsif admin_signed_in? %>
+          <span>管理者がログインしています</span><br>
+            <ul>
+              <li class="navlist">
+                <%= link_to "送料変更", edit_admins_freight_path(1) %>
+              </li>
+              <li class="navlist">
+                <%= link_to "商品追加", new_admins_item_path %>
+              </li>
+              <li class="navlist">
+                <%= link_to "在庫追加", new_admins_add_item_path %>
+              </li>
+              <li class="navlist">
+                <%= link_to "ログアウト", destroy_admin_session_path %>
+              </li><br>
+              <li class="navlist">
+                <%= link_to "受注履歴", admins_orders_path %>
+              </li>
+              <li class="navlist">
+                <%= link_to "入荷履歴", admins_add_items_path %>
+              </li>
+              <li class="navlist">
+                <%= link_to "顧客一覧", admins_endusers_path %>
+              </li>
+              <li class="navlist">
+                <%= link_to "問い合わせ一覧", admins_contacts_path %>
+              </li>
+            </ul>
+          <% else %>
+          <span></span><br>
+            <ul class="non-user-nav">
+              <li class="navlist">
+                <%= link_to "会員登録", new_enduser_registration_path %>
+              </li>
+              <li class="navlist">
+                <%= link_to "ログイン", new_enduser_session_path %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </header><!-- /header -->
     <%= yield %>
+    <footer>
+      <div class="footer">
+        <span class="footer-title">The CD</span>
+      </div>
+    </footer>
   </body>
 </html>

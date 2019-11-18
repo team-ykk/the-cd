@@ -1,0 +1,14 @@
+<div class="nested-fields">
+  <%= f.label "　Disc:" %>
+  <%= f.text_field :disc_name, placeholder: "(例)Disc1" %>
+  <%= link_to_remove_association "remove disc", f %>
+
+  <div class="songs">
+    <%= f.fields_for :songs do |song| %>
+    	<%= render "admins/items/song_fields", f: song %>
+    <% end %>
+    <div class="links">
+    	<%= link_to_add_association "曲を追加", f, :songs, class:"btn btn-info active btn-xs" %>
+    </div>
+  </div>
+</div>
