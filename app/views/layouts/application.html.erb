@@ -17,24 +17,12 @@
           <span class="nav-title">The CD</span>
         </nav>
         <nav class="nav-right">
-          <% if enduser_signed_in? %>
-          <span>〇〇さんがログインしています</span><br>
-            <ul>
-              <li class="navlist">
-                <%= link_to "カート一覧", cart_path(current_enduser.cart.id) %>
-              </li>
-              <li class="navlist">
-                <%= link_to "マイページ", enduser_path(current_enduser) %>
-              </li>
-              <li class="navlist">
-                <%= link_to "ログアウト", destroy_enduser_session_path %>
-              </li>
-            </ul>
+<!-- ログインした場合 -->
           <% elsif admin_signed_in? %>
           <span>管理者がログインしています</span><br>
             <ul>
               <li class="navlist">
-                <%= link_to "送料変更", edit_admins_freight_path(1) %>
+                <%= link_to "送料変更", admins_freights_path %>
               </li>
               <li class="navlist">
                 <%= link_to "商品追加", new_admins_item_path %>
