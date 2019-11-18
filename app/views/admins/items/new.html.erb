@@ -1,5 +1,5 @@
 <h2>商品追加</h2>
-<%= form_for(@item) do |f| %>
+<%= form_for(@item, url: admins_items_path ) do |f| %>
 	<div>
 		<label>ジャケット画像: </label>
 		<%= f.attachment_field :item_profile %>
