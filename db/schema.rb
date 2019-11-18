@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_103709) do
+ActiveRecord::Schema.define(version: 2019_11_18_091126) do
 
   create_table "additems", force: :cascade do |t|
     t.integer "add_item"
@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(version: 2019_11_17_103709) do
     t.datetime "deleted_at"
     t.integer "cart_id"
     t.integer "address_id"
-    t.index ["email"], name: "index_endusers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_endusers_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_endusers_on_email", unique: true, where: "deleted_at IS NULL"
+    t.index ["reset_password_token"], name: "index_endusers_on_reset_password_token", unique: true, where: "deleted_at IS NULL"
   end
 
   create_table "favorites", force: :cascade do |t|
