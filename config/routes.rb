@@ -44,13 +44,13 @@ Rails.application.routes.draw do
     resources :genres, only: [:create, :new]
   end
   namespace :admins do
-    resources :add_items, only: [:create, :index, :new]
+    resources :additems, only: [:create, :index, :new]
   end
   namespace :admins do
     resources :freights, only: [:edit, :update]
   end
   namespace :admins do
-    resources :contact_repliess, only: [:create, :new]
+    resources :contact_replies, only: [:create, :new]
   end
   namespace :admins do
     resources :contacts, only: [:index, :destroy]

@@ -13,6 +13,85 @@
  *= require_tree .
  *= require_self
  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// header-------------------------------------
+
+header {
+	background-color: #d3d3d3;
+}
+
+.header-top {
+	height: 100px;
+	width: 100%;
+	// vertical-align: middle; 不要かも
+	position: relative;
+}
+
+.nav-position{
+	position: relative;
+	top: 20px;
+	left: 90px;
+}
+
+.nav-title {
+	display: inline-block;
+	font-weight: bold;
+	font-size: 24px;
+	padding: 10px;
+	background-color: white;
+}
+
+.nav-right {
+	float: right;
+}
+
+li {
+  list-style: none;
+}
+
+.navlist {
+	margin: 5px;
+	padding: 4px 4px;
+	background-color: white;
+	float: left;
+	border-radius: 5px;
+}
+
+// 管理者側header
+.navlist:last-child {
+	margin-right: 15px;
+}
+
+// 顧客側header loginしていない場合
+.non-user-nav {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+}
+
+// footer-------------------------------------
+footer {
+	background-color: #d3d3d3;
+}
+
+.footer {
+	height: 50px;
+	width: 100%;
+	position: relative;
+}
+
+.footer-title {
+	position: absolute;
+	bottom: 20px;
+	left: 10px;
+}
+
+// body---------------------------------------
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
