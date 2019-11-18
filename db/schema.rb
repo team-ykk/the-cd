@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_034135) do
+ActiveRecord::Schema.define(version: 2019_11_17_103709) do
 
   create_table "additems", force: :cascade do |t|
     t.integer "add_item"
@@ -198,9 +198,9 @@ ActiveRecord::Schema.define(version: 2019_11_17_034135) do
   end
 
   create_table "taxes", force: :cascade do |t|
-    t.integer "tax_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "tax_rate"
   end
 
 end

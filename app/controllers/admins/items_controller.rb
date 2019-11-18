@@ -15,6 +15,9 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def create
+    @item = Item.new(item_params)
+    @item.save
+    redirect_to admins_items_path
   end
 
   def update
@@ -27,8 +30,8 @@ class Admins::ItemsController < Admins::ApplicationController
   end
   private
   def item_params
-    params.require(:item).permit(:itme_name, :shipdate, :price, :stock, :status, :item_profile,
-     :genre_id, :lavel_id, :artist_id, discs_attributes: [:id, :disc_name, :_destroy,
+    params.require(:item).permit(:item_name, :shipdate, :price, :stock, :status, :item_profile,
+     :genre_id, :label_id, :artist_id, discs_attributes: [:id, :disc_name, :_destroy,
       songs_attributes:[:id, :song_name, :song_number, :_destroy]])
   end
 end
