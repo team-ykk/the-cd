@@ -16,13 +16,13 @@
 				<%= @item.label.label_name %>
 				<%= @item.genre.genre_name %>
 				<%= @item.shipdate %>
-				<%= @item.price %>
+				<p><%= (@item.price * @tax).round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
 				<%= @item.status %>
 			</div>
 		</div>
 
 		<div class="col-md-6"><!-- ここに曲名　-->
-			<%= @item.discs.each do |disc| %>
+			<% @item.discs.each do |disc| %>
 			<%= disc.disc_name %>
 			<%= @disc.songs.each do |song| %>
 			<%= song.song_name %>
