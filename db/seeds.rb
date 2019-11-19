@@ -5,8 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-item = Item.new
-image = "/Users/abetakashi/Desktop/work/vagrant/the-cd/app/assets/images/sample-author7.jpg"
-item.item_profile = File.open(image)
-item.save
