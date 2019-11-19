@@ -16,11 +16,11 @@ class Item < ApplicationRecord
     enum status: { sell: 1, sell_stop: 2 }
 
     def self.search(search)
-    if search
-      Item.where(['item_name LIKE ?', "%#{search}%"])
-    else
-      Item.all
-    end
+        if search
+            Item.where(['item_name LIKE ?', "%#{search}%"])
+        else
+            Item.all
+        end
     end
 
 end

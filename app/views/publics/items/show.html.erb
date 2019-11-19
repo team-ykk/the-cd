@@ -1,36 +1,38 @@
 
 <div class="container">
-	<div class="row-md-10">
-		<h2>商品詳細</h2>
-
-		<div class="col-md-6"><!-- ここに画像と商品の説明 -->
-			<div>
-				<%= attachment_image_tag @item, :item_profile, :fill,100, 100, format: 'jpeg' %>
-			    <p>カートに入れる</p>
-			    <p>いいね数</p>
-			    <p>レビュー数</p>
+	<h2>商品詳細</h2>
+	<div class="row row-md-10">
+		<div class="col col-lg-1"></div>
+		<div class="col col-md-6">
+			<div class="item-image">
+			   <%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
-			<div>
-				<%= @item.item_name %>
-				<%= @item.artist.artist_name %>
-				<%= @item.label.label_name %>
-				<%= @item.genre.genre_name %>
-				<%= @item.shipdate %>
-				<p><%= (@item.price * @tax).round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
-				<%= @item.status %>
+			<div class="item-top">
+			    <button type="button" class="btn btn-primary btn-lg btn-cart">カートに入れる</button>
+			    <p><!-- いいね数 --></p>
+			    <p><!-- レビュー数 --></p>
 			</div>
-		</div>
+			<div class="item-bottom">
+				<p>商品名：<%= @item.item_name %></p>
+				<p>アーティスト名：<%= @item.artist.artist_name %></p>
+				<p>レーベル名：<%= @item.label.label_name %></p>
+				<p>ジャンル：<%= @item.genre.genre_name %></p>
+				<p>発売日：<%= @item.shipdate %></p>
+				<p>価格：<span><%= (@item.price * @tax).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
+				<p><%= @item.status %></p>
+			</div>
+	    </div>
 
-		<div class="col-md-6"><!-- ここに曲名　-->
+		<div class="col col-md-5">
 			<% @item.discs.each do |disc| %>
-			<%= disc.disc_name %>
-			<%= @disc.songs.each do |song| %>
-			<%= song.song_name %>
+			<p class="disc-song-disc"><%= disc.disc_name %></p>
+			<% disc.songs.each do |song| %>
+			<p class="disc-song-song"><%= song.song_name %></p>
 			<% end %>
 			<% end %>
 		</div>
 	</div>
 	<div class="row-md-10">
-		<p>レビューの一覧</p>
+		<!-- <p>レビューの一覧</p> -->
 	</div>
 </div>
