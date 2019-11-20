@@ -1,2 +1,29 @@
-<h1>Publics::Orders#new</h1>
-<p>Find me in app/views/publics/orders/new.html.erb</p>
+<h1>購入画面</h1>
+<h4>お届け先</h4>
+
+<% @enduser.each do |list| %>
+	<%= list.postcode %>
+	<%= list.prefecture %>
+	<%= list.address %>
+<% end %>
+
+<% current_enduser.addresses.each do |a| %>
+	<%= a.postcode %>
+	<%= a.prefecture_id %>
+	<%= a.address %>
+<% end %>
+
+
+<%= link_to '新しい住所を追加する', new_address_path %>
+
+<h4>支払い方法</h4>
+<%= form_for Order.new do |f| %>
+<label>
+	<%= f.radio_button :payment, "1" %>銀行振込
+	<%= f.radio_button :payment, "2" %>クレジットカード
+	<%= f.radio_button :payment, "3" %>代引き
+</label>
+<% end %>
+
+<h4>送料　全国一律¥500-</h4>
+
