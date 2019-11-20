@@ -3,63 +3,72 @@
     <div class="row">
         <div class="col-lg-3">
             </br>
-            <h2>マイページ</h2>
-            <% if flash[:notice] %>
-                <p><%= flash[:notice] %></p>
-            <% end %>
-            </br>
-            <table class="table table-striped">
-                <tbody>
-                <tr>
-                    <th>
-                        <span>名前</span>
-                        <span class="profile_name"><%= @enduser.first_name.last_name %></span>
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <sapn>フリガナ</sapn>>
-                        <span class="profile_name"><%= @enduser.first_name_kana.last_name_kana %></span>
-                    </th>
-                </tr>
-                <tr>
-                	<th>
-                		<span>郵便番号</span>>
-                		<span class="profile_postcord"><%= @enduser.postcord %></span>
-                	</th>
-                </tr>
-                <tr>
-                	<th>
-                		<span>住所</span>
-                		<span class="profile_address"><%= @enduser.prefecture.address %></span>
-                	</th>
-                </tr>
-                <tr>
-                	<th>
-                		<span>電話番号</span>>
-                		<sapn class="profile_phone_number"><%= @enduser.phone_number %></sapn>
-                	</th>
-                </tr>
-                <tr>
-                	<th>
-                		<span>メールアドレス</span>
-                	　　 <span class="profile_email"><%= @enduser.email %></span>
-                	</th>
-                </tr>
-                </tbody>
-            </table>
-            <%= link_to 'ユーザー情報編集画面へ',edit_enduser_path, class:"btn btn-primary" %>
-            <%= link_to "退会する", root_path, class:"btn btn-danger", method: :delete, "data-confirm" => "本当に退会しますか?" %>
-        </div>
-        <div class="col-lg-9">
-        	<div class="center-block"style="width: 200px; text-align: center; border: 3px solid gray;">
+            <div class="border">
+		        <h2>マイページ</h2>
+		        <% if flash[:notice] %>
+		            <p><%= flash[:notice] %></p>
+		        <% end %>
 		        </br>
-		    	<p>いいねしたもの一覧</p>
-        	</div>
-        	<table class="table table-striped">
-        		<tbody>
-        </div>
-    </div>
+		        <table class="table">
+		            <tbody>
+		            <tr>
+		                <th>
+		                    <span>名前:</span>
+		                    <span class="profile_name"><%= @enduser.first_name %></span>
+		                    <span class="profile_name"><%= @enduser.last_name %></span>
+		                </th>
+		            </tr>
+		            <tr>
+		                <th>
+		                    <sapn>フリガナ:</sapn>
+		                    <span class="profile_name"><%= @enduser.first_name_kana %></span>
+		                    <span class="profile_name"><%= @enduser.last_name_kana %></span>
+		                </th>
+		            </tr>
+		            <tr>
+		                <th>
+		                    <span>郵便番号:</span>
+		                    <span class="profile_postcord"><%= @enduser.postcode %></span>
+		                </th>
+		            </tr>
+		            <tr>
+		                <th>
+		                    <p>住所:</p>
+		                    <span class="profile_address"><%=  @tests[@enduser.prefecture] %></span>
+		                    <span class="profile_address"><%= @enduser.address %></span>
+		                </th>
+		            </tr>
+		            <tr>
+		            	<th>
+		            		<span>電話番号:</span>
+		            		<sapn class="profile_phone_number"><%= @enduser.phone_number %></sapn>
+		            	</th>
+		            </tr>
+		            <tr>
+		            	<th>
+		            		<p>メールアドレス:</p>
+		            	　　 <span class="profile_email"><%= @enduser.email %></span>
+		            	</th>
+		            </tr>
+		            </tbody>
+		        </table>
+		        <%= link_to 'ユーザー情報編集画面へ',edit_enduser_path, class:"btn btn-primary" %>
+		    </div>
+	        <div class="absolute">
+	        	<%= link_to "退会する", enduser_path, class:"btn btn-danger", method: :delete, "data-confirm" => "本当に退会しますか?" %>
+	        </div>
+	    </div>
+	    <div class="col-lg-9">
+	    	<div class="center-block"style="width: 200px; text-align: center; border: 3px solid gray;">
+		        </br>
+		    	<p>いいねした商品一覧</p>
+	    	</div>
+	    	<table class="table table-striped">
+				
+			</table>
+		</div>
+	</div>
 </div>
+
 
 
