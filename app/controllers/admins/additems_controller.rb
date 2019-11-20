@@ -8,6 +8,8 @@ class Admins::AdditemsController < Admins::ApplicationController
   def index
   end
 
+
+
   def create
   	@additem = Additem.new(additem_params)
   	@additem.save
