@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     attachment :item_profile
     accepts_nested_attributes_for :discs, allow_destroy: true
 
-    enum status: { sell: 1, sell_stop: 2 }
+    enum status: { sell: true, sell_stop: false }
 
     def self.search(search)
         if search

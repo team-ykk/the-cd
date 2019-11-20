@@ -1,3 +1,89 @@
 // Place all the styles related to the admins/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container{
+	width:100% ;
+	padding:40px 0;
+}
+
+.row {
+	padding-bottom: 30px;
+}
+
+.add_btn {
+	text-align: center;
+}
+
+.col{
+	margin-top :30px ;
+}
+.col-lg-8{
+	margin-right: 0 ;
+	margin-left: 0 ;
+}
+
+.item-h2{
+	margin-left: 5% ;
+}
+
+.col-lg-8 span{
+	float: right ;
+	margin-right: 20px ;
+	margin-bottom:50px;
+}
+.p1{
+	margin-top:10px;
+	margin-left:10px;
+	font-size:20px;
+}
+.p2{
+	margin-top:40px;
+	font-size:20px;
+}
+.p4{
+	margin-top:60px;
+	font-size:20px;
+	color:red;
+}
+
+.item-image{
+	width:260px;
+	float:left;
+	display: inline-block;
+}
+
+.item-top{
+	width:140px;
+	display: inline-block;
+	float:left;
+}
+.item-bottom{
+	float:left;
+	width:480px;
+	margin-top: 50px ;
+}
+
+.btn-cart{
+	margin-top:30px;
+	margin-left:30px;
+
+}
+.item-bottom p {
+	font-size: 25px;
+	margin-top:10px;
+}
+.item-bottom span{
+	color:red;
+}
+.col-md-5 {
+	background-color:#4682b4;
+	padding:30px 0;
+}
+.disc-song-disc{
+	margin-top:10px;
+	margin-left:10px;
+}
+.disc-song-song{
+	margin-top:10px;
+	margin-left:35px;
+}

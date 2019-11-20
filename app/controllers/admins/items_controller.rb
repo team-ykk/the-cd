@@ -1,5 +1,9 @@
 class Admins::ItemsController < Admins::ApplicationController
   def index
+    @item = Item.new
+    @items = Item.search(params[:search])
+    @items = @items.page(params[:page])
+    @tax = Tax.find(1)
   end
 
   def new
@@ -9,9 +13,12 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
+    @tax = Tax.find(1)
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def create
@@ -21,9 +28,15 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    redirect_to admins_item_path(@item)
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to admins_items_path
   end
 
   def ranking
