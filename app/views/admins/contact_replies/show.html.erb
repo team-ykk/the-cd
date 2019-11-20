@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+      		<h1>お問合せ詳細</h1>
+      	</div>
+    </div>
+    <div class="row">
+    	<div class="col">
+    		<p>お問合せ内容</p>
+    		<p>
+      			<%= @contact.contact_content %>
+      		</p>
+    	</div>
+    </div>
+    <div class="row">
+    	<div class="col">
+    		<p>返信入力フォーム</p>
+    		<% form_for @reply do |f| %>
+    		<span>メールアドレス</span>
+    		
+    		<% end %>
+    	</div>
+    </div>
+</div>

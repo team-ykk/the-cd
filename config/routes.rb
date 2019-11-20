@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     resources :carts, only: [:show, :update, :destroy, :create]
   end
    scope module: :publics do
+    resources :cart_items, only: [:create]
+  end
+   scope module: :publics do
     resources :endusers, only: [:show, :destroy, :edit, :update]
   end
    scope module: :publics do
@@ -50,7 +53,7 @@ Rails.application.routes.draw do
     resources :freights, only: [:edit, :update, :index]
   end
   namespace :admins do
-    resources :contact_replies, only: [:create, :new]
+    resources :contact_replies, only: [:create, :show]
   end
   namespace :admins do
     resources :contacts, only: [:index, :destroy]

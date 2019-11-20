@@ -1,10 +1,5 @@
 class Admins::ContactsController < Admins::ApplicationController
   def index
-  end
-
-  def destroy
-  end
-
-  def complete
+  	  @contact = Contact.page(params[:page]).reverse_order
   end
 end
