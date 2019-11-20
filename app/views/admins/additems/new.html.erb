@@ -1,2 +1,51 @@
-<h1>Admins::AddItems#new</h1>
-<p>Find me in app/views/admins/add_items/new.html.erb</p>
+<div class="container">
+  <h2 class="additem-h2">在庫追加フォーム</h2>
+  <div class="row">
+  	<div class="boxes">
+	  	<div class="col col-lg-12 mx-auto">
+			<%= form_tag(new_admins_additem_path, method: "get") do %>
+				<p>
+				<%= text_field_tag :search, params[:search] ,placeholder:"商品名で検索" %>
+				<%= submit_tag "Search", :item_name => nil %>
+				</p>
+			<% end %>
+
+		<table class="table table-sm table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>商品名</th>
+					<th>アーティスト名</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @items.each do |item| %>
+				<tr>
+					<td><%= item.id %></td>
+					<td><%= item.item_name %></td>
+					<td><%= item.artist.artist_name %></td>
+				</tr>
+				<% end %>
+				<%= paginate @item, class: "paginate" %>
+			</tbody>
+		</table>
+	  	</div>
+
+	  	<div class="add_btn">
+		<%= form_for(@additem, url: admins_additems_path) do |f| %>
+			<div>
+				<label>登録ID　</label>
+				<%= f.number_field :item_id, min: 1 %>
+			</div>
+			<div>
+				<label>追加枚数 </label>
+				<%= f.number_field :add_item, min: 1 %>
+			</div>
+			<div>
+				<%= f.submit "保存", class:"btn btn-default btn-sm" %>
+			</div>
+		<% end %>
+	  	</div>
+	</div>
+  </div>
+</div>

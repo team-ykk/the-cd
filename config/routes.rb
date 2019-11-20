@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :additems, only: [:create, :index, :new]
   end
   namespace :admins do
-    resources :freights, only: [:edit, :update]
+    resources :freights, only: [:edit, :update, :index]
   end
   namespace :admins do
     resources :contact_replies, only: [:create, :new]

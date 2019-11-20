@@ -1,2 +1,35 @@
-<h1>Admins::Items#index</h1>
-<p>Find me in app/views/admins/items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2 class="item-h2">商品一覧</h2>
+    <div class="col col-lg-2">
+    </div>
+    <div class="col col-lg-8">
+      <table class="table table-striped">
+        <span><%= form_tag items_path ,:method => 'get' do %>
+          <%= text_field_tag :search, params[:search] ,placeholder:"商品名で検索" %>
+          <%= submit_tag " 検索　", :item_name => nil %>
+          <% end %></span>
+          <span>発売日順・<%= link_to "いいね順", items_ranking_path %></span>
+          <thead>
+            <tr>
+              <th>発売日</th>
+              <th><!-- いいね　と　レビュー数 --></th>
+              <th>商品名・アーティスト名</th>
+              <th>価格（税込）</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <% @items.each do |item| %>
+                <td><%= attachment_image_tag item, :item_profile, :fill, 120, 120, format: 'jpeg' %></br><p class="p1"><%= item.shipdate %></p></td>
+                <td><!-- いいね数</br>レビュー数 --></td>
+                <td><p class="p2"><%= link_to admins_item_path(item) do %><%= item.item_name %><% end %></p></br><p class="p3"><%= item.artist.artist_name  %></p></td>
+                <td><p class="p4"><%= (item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p></td>
+              </tr>
+              <% end %>
+              <%= paginate @items, class: "paginate" %>
+          </tbody>
+       </table>
+     </div>
+   </div>
+ </div>
