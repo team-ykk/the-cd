@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Publics::RegistrationsController < Devise::RegistrationsController
-   
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -11,9 +11,18 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+     @cart = Cart.new
+     @cart.enduser_id = current_enduser.id
+     @cart.save
+
+     @enduser = current_enduser
+     @enduser.cart_id = @cart.id
+     @enduser.update(enduser_params)
+
+
+   end
 
   # GET /resource/edit
   # def edit
@@ -21,9 +30,9 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+   #def update
+    # super
+   #end
 
   # DELETE /resource
   # def destroy
@@ -60,4 +69,9 @@ class Publics::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def enduser_params
+    params.require(:enduser).permit(:cart_id)
+  end
 end
