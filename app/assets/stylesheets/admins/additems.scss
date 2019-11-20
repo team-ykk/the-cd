@@ -1,3 +1,19 @@
 // Place all the styles related to the admins/add_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.container{
+	width:100% ;
+	padding:40px 0;
+}
+
+.additem-h2{
+	margin-left: 5% ;
+}
+
+.col{
+	margin-top :30px ;
+}
+
+.add_btn {
+	text-align: center;
+}
