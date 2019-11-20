@@ -1,38 +1,70 @@
 <p id="notice"></p>
 	<div class="container">
     	<div class="row">
-    		<div class="col">
+    		<div class="col text-center">
     			<div class="center-block"style="width: 500px; text-align: center; border: 3px solid gray;">
 					<h1>ユーザー情報の編集</h1>
 				</div>
+			</div>
+		</div>
+		<div class="row 2">
+			<div class="col text-center">
 				<%= form_for @enduser do |f| %>
-				<% if @enduser.errors.any? %>
-				<%= @enduser.errors.count %>件のerrorが発生しました
-					<% @enduser.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
+					<% if @enduser.errors.any? %>
+						<%= @enduser.errors.count %>件のerrorが発生しました
+							<% @enduser.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+							<% end %>
 					<% end %>
 				<% end %>
-			<% end %>
-			<%= form_for @enduser do |f| %>
-				<span>名前</span>
-				<span><%= f.text_field :first_name, :last_name %></span>
-				<span>フリガナ</span>
-				<span><%= f.text_field :first_name_kana, :last_name_kana %></span>
-				<span>郵便番号</span>
-				<span><%= f.text_field :postcord %></span>
-				<span>住所</span>
-				<span>都道府県</span>
+				<%= form_for @enduser do |f| %>
+					<p>
+						<span>名前</span>
+						<span><%= f.text_field :first_name %></span>
+						<span><%= f.text_field :last_name %></span>
+					</p>
+					<p>
+						<span>フリガナ</span>
+						<span><%= f.text_field :first_name_kana %></span>
+						<span><%= f.text_field :last_name_kana %></span>
+					</p>
+					<p>
+						<span>郵便番号</span>
+						<span><%= f.text_field :postcode %></span>
+					</p>
+						<div class="field">
+				          <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+				          <div class="h-adr">
+				            <span class="p-country-name" style="display:none;">Japan</span>
+				            <p><%= f.label :"住所" %></p>
+				            <%= f.label :"郵便番号" %>
+				            〒<%= f.text_field :postcode, :class => "p-postal-code", :size=>"8", :maxlength=>"8", :placeholder=>"(例)0001111" %>
+				            <p>
+					            <%= f.label :"都道府県" %>
+					            <%= f.select :prefecture, {"--": 0, 北海道: 1, 青森県: 2, 岩手県: 3, 宮城県: 4, 秋田県: 5, 山形県: 6, 福島県: 7, 茨城県: 8, 栃木県: 9, 群馬県: 10, 埼玉県: 11, 千葉県: 12, 東京都: 13, 神奈川県: 14, 新潟県: 15, 富山県: 16, 石川県: 17, 福井県: 18, 山梨県: 19, 長野県: 20, 岐阜県: 21, 静岡県: 22, 愛知県: 23, 三重県: 24, 滋賀県: 25, 京都府: 26, 大阪府: 27, 兵庫県: 28, 奈良県: 29, 和歌山県: 30, 鳥取県: 31, 島根県: 32, 岡山県: 33, 広島県: 34, 山口県: 35, 徳島県: 36, 香川県: 37, 愛媛県: 38, 高知県: 39, 福岡県: 40, 佐賀県: 41, 長崎県: 42, 熊本県: 43, 大分県: 44, 宮崎県: 45, 鹿児島県: 46, 沖縄県: 47}, {}, {class:"p-region-id"} %>
+				            </p>
+				            <P>
+					            <%= f.label :"市区町村・番地・部屋番号" %>
+					            <%= f.text_field :address, :class => "p-locality p-street-address p-extended-address" %>
+				       		</P>
+				          	</div>
+		            	</div>
 
-				<span>電話番号</span>
-				<span><%= f.text_field :phone_number %></span>
-				<span>メールアドレス</span>
-				<span><%= f.text_field :email %></span>
-				<p>
-				<%= f.submit"編集する", class:"btn btn-block btn-primary" %>
-				</p>
-		    <% end %>
+		            	<p>
+							<span>電話番号</span>
+							<span><%= f.text_field :phone_number %></span>
+						</p>
+						<p>
+							<span>メールアドレス</span>
+							<span><%= f.text_field :email %></span>
+						</p>
+						<p>
+						<%= f.submit"編集する", class:"btn btn-primary" %>
+						</p>
+		    		<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+
 
