@@ -5,6 +5,10 @@ class Admins::ContactRepliesController < Admins::ApplicationController
   end
 
   def create
+  	  @reply = ContactReply.new(reply_params)
+  	  @reply = reply.save(reply_params)
+  	  enduser = contact.enduser
+  	  ContactMailer.send_when_admin_reply(enduser, contact).deliver
   end
 
   def update
@@ -14,4 +18,8 @@ class Admins::ContactRepliesController < Admins::ApplicationController
   	  ContactMailer.send_when_admin_reply(enduser, contact).deliver
   end
 
+  private
+  def contact_reply_params
+  	  params.require(:contact_reply).permit(:reply_content)
+  end
 end
