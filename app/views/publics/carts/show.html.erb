@@ -24,7 +24,16 @@
                 	<p class="p3"><%= t.item.artist.artist_name  %></p></br>
                 	<p class="p5"><%= (t.item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p></td>
                 <td><%= link_to "カートから削除", cart_path(@cart.id), method: :delete %>
-                  <p>数量の編集</p>
+
+
+
+                  <%= form_for(@cart_item, url: cart_path(@cart) ) do |f| %>
+                  <label>数量</label>
+                  <%= f.number_field :quantity, min: 1, class:"field" %>
+                  <%= f.submit "保存", class:"btn btn-default btn-sm" %>
+                  <% end %>
+
+
 
                 </td>
               </tr>
