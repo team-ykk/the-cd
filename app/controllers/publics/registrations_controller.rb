@@ -21,6 +21,18 @@ class Publics::RegistrationsController < Devise::RegistrationsController
      @enduser.cart_id = @cart.id
      @enduser.update(enduser_params)
 
+     @address = Address.new
+     @address.enduser_id = current_enduser.id
+     @address.postcode =current_enduser.postcode
+     @address.name = current_enduser.first_name, current_enduser.last_name
+     @address.prefecture_id = current_enduser.prefecture
+     @address.address = current_enduser.address
+     @address.phone_number = current_enduser.phone_number
+     @address.created_at = current_enduser.created_at
+     @address.updated_at = current_enduser.updated_at
+     @address.save
+
+
 
    end
 

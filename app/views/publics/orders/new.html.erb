@@ -1,29 +1,29 @@
 <h1>購入画面</h1>
 <h4>お届け先</h4>
 
-<% @enduser.each do |list| %>
-	<%= list.postcode %>
-	<%= list.prefecture %>
-	<%= list.address %>
+
+<%= form_for (@order) do |f| %>
+		<% current_enduser.addresses.each do |a| %>
+			<%= f.radio_button :address_id, a.id %>
+			<%= a.postcode %>
+			<%= a.prefecture_id %>
+			<%= a.address %>
+		<% end %>
+
+
+		<%= link_to '新しい住所を追加する', new_address_path %>
+
+		<h4>支払い方法</h4>
+
+			<label>
+				<%= f.radio_button :payment, :aaa %>銀行振込
+				<%= f.radio_button :payment, :iii %>クレジットカード
+				<%= f.radio_button :payment, :uuu %>代引き
+			</label>
+
+
+		<h4>送料　全国一律¥500-</h4>
+
+		<%= f.submit "購入確定" %>
 <% end %>
-
-<% current_enduser.addresses.each do |a| %>
-	<%= a.postcode %>
-	<%= a.prefecture_id %>
-	<%= a.address %>
-<% end %>
-
-
-<%= link_to '新しい住所を追加する', new_address_path %>
-
-<h4>支払い方法</h4>
-<%= form_for Order.new do |f| %>
-<label>
-	<%= f.radio_button :payment, "1" %>銀行振込
-	<%= f.radio_button :payment, "2" %>クレジットカード
-	<%= f.radio_button :payment, "3" %>代引き
-</label>
-<% end %>
-
-<h4>送料　全国一律¥500-</h4>
 
