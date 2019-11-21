@@ -23,14 +23,22 @@ class Admins::ItemsController < Admins::ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admins_items_path
+    @disc = @item.discs.build
+    @song = @disc.songs.build
+    if @item.save
+      redirect_to admins_items_path
+    else
+      render :new
+    end
   end
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admins_item_path(@item)
+    if @item.update(item_params)
+      redirect_to admins_item_path(@item)
+    else
+      render :edit
+    end
   end
 
   def destroy

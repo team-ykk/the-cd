@@ -1,2 +1,50 @@
-<h1>Admins::AddItems#index</h1>
-<p>Find me in app/views/admins/add_items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2 class="item-h2">入荷履歴一覧</h2>
+    <div class="col col-lg-2">
+    </div>
+    <div class="col col-lg-8">
+      <table class="table table-striped">
+          <% (@additems).each do |additem| %>
+          <thead>
+            <tr>
+              <th><%= additem.created_at.strftime("%Y-%m-%d %H:%M") %></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>
+                	<%= attachment_image_tag additem.item, :item_profile, :fill, 120, 120, format: 'jpeg' %>
+                </td>
+                <td>
+                	<p class="content">
+                		曲名
+                	</p>
+                	<p class="content">
+                		アーティスト名
+                	</p>
+                	<p class="content">
+                		入荷枚数
+                	</p>
+                </td>
+                <td>
+                	<p class="content">
+                		<%= link_to admins_item_path(additem) do %><%= additem.item.item_name %><% end %>
+                	</p>
+                	<p class="content">
+                		<%= additem.item.artist.artist_name %>
+                	</p>
+                	<p class="content">
+                		<%= additem.add_item %>　枚
+                	</p>
+                </td>
+              </tr>
+              <% end %>
+              <%= paginate @additems, class: "paginate" %>
+          </tbody>
+       </table>
+     </div>
+   </div>
+ </div>

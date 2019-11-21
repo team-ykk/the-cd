@@ -42,10 +42,10 @@ Rails.application.routes.draw do
   end
 
   namespace :admins do
-    resources :labels, only: [:create, :new]
+    resources :labels, only: [:create, :new, :index]
   end
   namespace :admins do
-    resources :genres, only: [:create, :new]
+    resources :genres, only: [:create, :new, :index]
   end
   namespace :admins do
     resources :additems, only: [:create, :index, :new]
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
     resources :contact_replies, only: [:create, :show, :update]
   end
   namespace :admins do
-    resources :contacts, only: [:index, :destroy]
+    resources :contacts, only: [:index, :destroy, :show]
     get 'contacts/complete'
   end
   namespace :admins do
@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     get 'items/ranking'
   end
   namespace :admins do
-    resources :artists, only: [:create, :new]
+    resources :artists, only: [:create, :new, :index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
