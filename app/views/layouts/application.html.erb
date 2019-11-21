@@ -25,7 +25,7 @@
             <span><%= current_enduser.first_name + current_enduser.last_name %>さんがログインしています</span><br>
               <ul>
                 <li class="navlist">
-                  <%= link_to "カート一覧", cart_path(current_enduser), class:"btn btn-default" %>
+                  <%= link_to "カート一覧", cart_path(current_enduser.cart), class:"btn btn-default" %>
                 </li>
                 <li class="navlist">
                   <%= link_to "マイページ", enduser_path(current_enduser), class:"btn btn-default" %>
