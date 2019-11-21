@@ -8,7 +8,12 @@
 			   <%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
 			<div class="item-top">
-			    <button type="button" class="btn btn-primary btn-lg btn-cart">カートに入れる</button>
+				<%= form_for(@cart_item) do |l| %>
+			    <%= l.hidden_field :cart_id, value: @cart.id %>
+			    <%= l.hidden_field :item_id, value: @item.id %>
+			    <%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
+			    <div class="cart_botton "><%= l.submit "カートに入れる" %></div>
+				<% end %>
 			    <p><!-- いいね数 --></p>
 			    <p><!-- レビュー数 --></p>
 			</div>
@@ -18,7 +23,7 @@
 				<p>レーベル名：<%= @item.label.label_name %></p>
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
-				<p>価格：<span><%= (@item.price * @tax).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
+				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
 				<p><%= @item.status %></p>
 			</div>
 	    </div>
@@ -33,6 +38,33 @@
 		</div>
 	</div>
 	<div class="row-md-10">
-		<!-- <p>レビューの一覧</p> -->
+		<div class="col col-lg-1"></div>
+		<div class="col col-md-6">
+
+		<!-- <p>レビューの一覧</p> --> -->
 	</div>
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,2 +1,38 @@
-<h1>Publics::Carts#show</h1>
-<p>Find me in app/views/publics/carts/show.html.erb</p>
+
+<div class="container">
+  <div class="row">
+    <h2 class="item-h2">カート一覧</h2>
+    <div class="col col-lg-2">
+    </div>
+    <div class="col col-lg-8">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>発売日</th>
+              <th><!-- いいね　と　レビュー数 --></th>
+              <th>商品名・アーティスト名・価格</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <% @cart.cart_items.each do |t| %>
+                <td><%= attachment_image_tag t.item, :item_profile, :fill, 120, 120, format: 'jpeg' %></br>
+                	<p class="p1"><%= t.item.shipdate %></p></td>
+                <td><!-- いいね数</br>レビュー数 --></td>
+                <td><p class="p2"><%= link_to item_path(t.item.id) do %><%= t.item.item_name %><% end %></p></br>
+                	<p class="p3"><%= t.item.artist.artist_name  %></p></br>
+                	<p class="p5"><%= (t.item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p></td>
+                <td><%= link_to "カートから削除", cart_path(@cart.id), method: :delete %>
+                  <p>数量の編集</p>
+
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+       </table>
+       <p>合計金額 <%= @cart_total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+       <%= link_to "購入画面へ進む", new_order_path %>
+     </div>
+   </div>
+ </div>
