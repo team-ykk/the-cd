@@ -4,89 +4,97 @@
   	<div class="boxes">
 		<div class="col col-lg-12 mx-auto">
 		<%= form_for(@item, url: admins_item_path(@item) ) do |f| %>
-				<table class="table table-sm table-bordered">
-					<tbody>
-						<tr>
-							<th><label class="label_name label_height">ジャケット画像</label></th>
-							<td><%= f.attachment_field :item_profile %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">商品名</label>
-							</th>
-							<td><%= f.text_field :item_name, placeholder: "商品名" %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">アーティスト名 </label>
-							</th>
-							<td>
-								<%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選択してください"  %>
-								<%= link_to "アーティストの追加", new_admins_artist_path, class:"btn btn-default btn-xs" %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">レーベル名 </label>
-							</th>
-							<td>
-								<%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選択してください"  %>
-								 <%= link_to "レーベルの追加", new_admins_label_path, class:"btn btn-default btn-xs" %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">ジャンル </label>
-							</th>
-							<td>
-								<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選択してください"  %>
-								<%= link_to "ジャンルの追加", new_admins_genre_path, class:"btn btn-default btn-xs" %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">発売日</label>
-							</th>
-							<td>
-								<%= f.date_field :shipdate, placeholder: "XXXX-XX-XX" %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">価格</label>
-							</th>
-							<td>
-								<%= f.text_field :price, placeholder: "1000(税抜)" %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">在庫数</label>
-							</th>
-							<td>
-								<%= f.number_field :stock, min: 1 %>
-							</td>
-						</tr>
-						<tr>
-							<th>CD/DVD/曲名/曲順</th>
-							<td><%= render 'admins/items/item_form', f: f %>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<label class="label_name label_height">販売状態</label>
-							</th>
-							<td>
-								<%= f.label :status, "販売中" %>
-								<%= f.radio_button :status, :sell %>
-								<%= f.label :status, "販売停止" %>
-								<%= f.radio_button :status, :sell_stop %>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+		    <% if @item.errors.any? %>
+        		<div id="error_explanation">
+            		<h2>エラーが発生しました。</h2>
+	                <ul>
+		                <li>空白を埋めてください</li>
+	                </ul>
+            	</div>
+            <% end %>
+			<table class="table table-sm table-bordered">
+				<tbody>
+					<tr>
+						<th><label class="label_name label_height">ジャケット画像</label></th>
+						<td><%= f.attachment_field :item_profile %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">商品名</label>
+						</th>
+						<td><%= f.text_field :item_name, placeholder: "商品名", class:"field" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">アーティスト名 </label>
+						</th>
+						<td>
+							<%= f.collection_select :artist_id, Artist.all, :id, :artist_name, :prompt => "選択してください", class:"field"  %>
+							<%= link_to "アーティストの追加", new_admins_artist_path, class:"btn btn-default btn-xs" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">レーベル名 </label>
+						</th>
+						<td>
+							<%= f.collection_select :label_id, Label.all, :id, :label_name, :prompt => "選択してください", class:"field"  %>
+							 <%= link_to "レーベルの追加", new_admins_label_path, class:"btn btn-default btn-xs" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">ジャンル </label>
+						</th>
+						<td>
+							<%= f.collection_select :genre_id, Genre.all, :id, :genre_name, :prompt => "選択してください", class:"field"  %>
+							<%= link_to "ジャンルの追加", new_admins_genre_path, class:"btn btn-default btn-xs" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">発売日</label>
+						</th>
+						<td>
+							<%= f.date_field :shipdate, placeholder: "XXXX-XX-XX", class:"field" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">価格</label>
+						</th>
+						<td>
+							<%= f.text_field :price, placeholder: "1000(税抜)", class:"field" %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">在庫数</label>
+						</th>
+						<td>
+							<%= f.number_field :stock, min: 1, class:"field" %>
+						</td>
+					</tr>
+					<tr>
+						<th>CD/DVD/曲名/曲順</th>
+						<td><%= render 'admins/items/item_form', f: f %>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<label class="label_name label_height">販売状態</label>
+						</th>
+						<td class = "field">
+							<%= f.label :status, "販売中" %>
+							<%= f.radio_button :status, :sell %>
+							<%= f.label :status, "販売停止" %>
+							<%= f.radio_button :status, :sell_stop %>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 			<div class="add_btn">
 				<%= f.submit '編集する', class:"btn btn-default btn-sm" %>
 			</div>
