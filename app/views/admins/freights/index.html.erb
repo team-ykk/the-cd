@@ -1,7 +1,11 @@
-<h2>送料確認画面</h2>
-<div>
-	<span>[全国一律]</span><br>
-	<label>送料:</label>
-	<%= @freight.postage %><span>円</span><br>
-	<%= link_to "送料編集画面へ", edit_admins_freight_path(@freight) %>
+<div class="container">
+	<h2 class="item-h2">送料確認画面</h2>
+	<div class="row">
+		<div class="col col-lg-12 mx-auto">
+			<span>[全国一律]</span><br>
+			<label>送料:</label>
+			<%= @freight.postage %><span>円</span><br>
+			<%= link_to "送料編集画面へ", edit_admins_freight_path(@freight), class:"btn btn-default btn-xs"  %>
+		</div>
+	</div>
 </div>
