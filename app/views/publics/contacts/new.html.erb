@@ -3,12 +3,12 @@
 		<div class="col text-center">
 			<h1>お問い合わせフォーム</h1>
 		</div>
-	</div>
-	<div class="row">
 		<div class="col text-center">
 			<%= form_for (@contact) do |f| %>
 				<%= f.text_field :contact_content %>
-				<%= f.submit "送信", class: "btn btn-primary" %>
+				<div class="soushinn">
+					<%= f.submit "送信", class: "btn btn-primary" %>
+				</div>
 			<% end %>
 		</div>
 	</div>
@@ -20,5 +20,10 @@ input[type="text"] {
         width: 800px;
         height: 200px;
     }
+
+.soushinn{
+	height: 100px;
+	margin-left: 800px;
+}
 </style>
 
