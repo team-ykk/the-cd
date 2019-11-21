@@ -1,21 +1,16 @@
 class Admins::ContactRepliesController < Admins::ApplicationController
   def show
   	  @contact = Contact.find(params[:id])
-  	  @reply = ContactReply.new
-  end
-
-  def create
-  	  @reply = ContactReply.new(reply_params)
-  	  @reply = reply.save(reply_params)
-  	  enduser = contact.enduser
-  	  ContactMailer.send_when_admin_reply(enduser, contact).deliver
+      @reply = ContactReply.new
   end
 
   def update
-  	  contact = Contact.find(params[:id])
-  	  contact.update(contact_params)
-  	  enduser = contact.enduser
-  	  ContactMailer.send_when_admin_reply(enduser, contact).deliver
+      @reply = ContactReply.find(params[:id])
+      @reply.update(contact_reply_params)
+      @enduser = ContactReply.contact.enduser
+      @contact_reply = ContactReply.reply_content
+      ContactMailer.send_when_admin_reply(@enduser, @contact_reply).deliver
+
   end
 
   private

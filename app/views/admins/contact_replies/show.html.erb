@@ -16,6 +16,7 @@
           <div class="mozi">
   	    		<p>メールアドレス</p>
           </div>
+          <%= f.text_area :email, value: @contact.enduser.email %>
           <div class="mozi">
 	    		 <p>返信入力フォーム</p>
           </div>
@@ -34,6 +35,10 @@ input[type="text"] {
         width: 800px;
         height: 200px;
     }
+input[type="area"] {
+    width: 200px;
+    height: 60px;
+}
 .hennshinn{
 	height: 100px;
 	margin-left: 800px;
