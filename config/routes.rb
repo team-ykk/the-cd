@@ -28,15 +28,16 @@ Rails.application.routes.draw do
     resources :carts, only: [:show, :update, :destroy, :create]
   end
    scope module: :publics do
-    resources :cart_items, only: [:create]
+    resources :cart_items, only: [:create, :update]
   end
    scope module: :publics do
     resources :endusers, only: [:show, :destroy, :edit, :update]
   end
    scope module: :publics do
-    resources :items, only: [:index, :show]
-    resource :favorites, only:[:create, :destroy]
-    resource :reviews, only:[:create]
+    resources :items, only: [:index, :show] do
+      resource :favorites, only:[:create, :destroy]
+      resource :reviews, only:[:create]
+  end
     get 'items/ranking'
   end
 
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
     resources :freights, only: [:edit, :update, :index]
   end
   namespace :admins do
-    resources :contact_replies, only: [:create, :show]
+    resources :contact_replies, only: [:create, :show, :update]
   end
   namespace :admins do
     resources :contacts, only: [:index, :destroy]
@@ -63,13 +64,12 @@ Rails.application.routes.draw do
     resources :orders, only: [:index]
   end
   namespace :admins do
-    resources :reviews, only: [:destroy, :edit, :update]
-  end
-  namespace :admins do
     resources :endusers, only: [:index, :show, :destroy, :edit, :update]
   end
   namespace :admins do
-    resources :items
+    resources :items do
+      resources :reviews, only: [:destroy, :edit, :update]
+    end
     get 'items/ranking'
   end
   namespace :admins do
