@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :carts, only: [:show, :update, :destroy, :create]
   end
    scope module: :publics do
-    resources :cart_items, only: [:create, :update]
+    resources :cart_items, only: [:create, :update, :destroy]
   end
    scope module: :publics do
     resources :endusers, only: [:show, :destroy, :edit, :update]
