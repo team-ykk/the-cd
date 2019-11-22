@@ -7,10 +7,15 @@ class Publics::CartItemsController < ApplicationController
     end
 
     def update
-        @cart = Cart.find(params[:id])
-        @cart_item = CartItem.find_by(cart_id: @cart.id)
+        @cart = current_enduser.cart
+        @cart_item = CartItem.where(cart_id: @cart.id )
         @cart_item.update(cart_item_params)
-        redirect_to cart_path(current_enduser.cart.id)
+
+        redirect_to cart_path(@cart.id)
+    end
+
+    def destroy
+        
     end
 
 	private
