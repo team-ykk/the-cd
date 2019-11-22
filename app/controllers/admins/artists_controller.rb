@@ -4,9 +4,13 @@ class Admins::ArtistsController < Admins::ApplicationController
   end
 
   def create
+    @back_url = session[:my_previous_url]
   	@artist = Artist.new(artist_params)
-  	@artist.save
-  	redirect_to new_admins_item_path
+    if	@artist.save
+      redirect_to @back_url
+    else
+      render :new
+    end
   end
   private
   def artist_params

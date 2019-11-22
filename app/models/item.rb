@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-	default_scope -> { order(shipdate: :desc) }
 	acts_as_paranoid
 	has_many :add_items
 	has_many :favorites, dependent: :destroy
@@ -13,7 +12,16 @@ class Item < ApplicationRecord
     attachment :item_profile
     accepts_nested_attributes_for :discs, allow_destroy: true
 
-    enum status: { sell: true, sell_stop: false }
+    validates :item_name, presence:true
+    validates :shipdate, presence:true
+    validates :price, presence:true
+    validates :stock, presence:true
+    validates :status, presence:true
+    validates :genre_id, presence:true
+    validates :label_id, presence:true
+    validates :artist_id, presence:true
+
+    enum status: { 販売中: true, 販売停止中: false }
 
     def self.search(search)
         if search

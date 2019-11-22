@@ -8,8 +8,11 @@ class Admins::FreightsController < Admins::ApplicationController
 
   def update
   	@freight = Freight.find(1)
-  	@freight.update(freight_params)
-  	redirect_to admins_freights_path
+  	if @freight.update(freight_params)
+  	 redirect_to admins_freights_path
+    else
+      render :edit
+    end
   end
   private
   def freight_params

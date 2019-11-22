@@ -1,5 +1,5 @@
 <div class="container">
-  <h2 class="additem-h2">在庫追加フォーム</h2>
+  <h2>在庫追加フォーム</h2>
   <div class="row">
   	<div class="boxes">
 	  	<div class="col col-lg-12 mx-auto">
@@ -26,20 +26,28 @@
 					<td><%= item.artist.artist_name %></td>
 				</tr>
 				<% end %>
-				<%= paginate @item, class: "paginate" %>
+				<%= paginate @items, class: "paginate" %>
 			</tbody>
 		</table>
 	  	</div>
 
 	  	<div class="add_btn">
 		<%= form_for(@additem, url: admins_additems_path) do |f| %>
+			    <% if @additem.errors.any? %>
+            		<div id="error_explanation">
+                		<h2>エラーが発生しました。</h2>
+		                <ul>
+			                <li>空白を埋めてください</li>
+		                </ul>
+	            	</div>
+                <% end %>
 			<div>
 				<label>登録ID　</label>
-				<%= f.number_field :item_id, min: 1 %>
+				<%= f.number_field :item_id, min: 1, class:"field" %>
 			</div>
 			<div>
 				<label>追加枚数 </label>
-				<%= f.number_field :add_item, min: 1 %>
+				<%= f.number_field :add_item, min: 1, class:"field" %>
 			</div>
 			<div>
 				<%= f.submit "保存", class:"btn btn-default btn-sm" %>

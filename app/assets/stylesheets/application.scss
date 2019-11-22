@@ -19,11 +19,17 @@
   box-sizing: border-box;
 }
 
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: inline-block;
+}
+
 // header-------------------------------------
 
 header {
 	background-color: white;
-	border: solid 1px white;
+	border: solid 2px #d3d3d3;
 	box-shadow: 0 0 8px gray;
 }
 
@@ -41,6 +47,8 @@ header {
 }
 
 .nav-title {
+	color: #333333;
+	text-decoration: none !important;
 	position: relative;
 	display: inline-block;
 	font-weight: bold;
@@ -49,6 +57,14 @@ header {
 	background-color: #d3d3d3;
 	box-shadow: 0px 0px 0px 5px #d3d3d3;
 	border: dashed 2px white;
+}
+
+.nav-title:hover {
+	color: #333333;
+}
+
+.nav-title:visited {
+	color: #333333;
 }
 
 .nav-title:after {
@@ -95,11 +111,13 @@ li {
 // footer-------------------------------------
 footer {
 	background-color: white;
+	border: solid 2px #d3d3d3;
 	box-shadow: 0 0 8px gray;
 }
 
 .footer {
 	height: 80px;
+	margin-top: -80px;
 	width: 100%;
 	position: relative;
 }
@@ -132,11 +150,29 @@ footer {
 	right: 7px;
 }
 
+.footer-contact {
+	position: absolute;
+	bottom: 25px;
+	right: 20px;
+}
+
 // body---------------------------------------
+html,body {
+	height:100%  !important;
+}
+
+.push {
+	height: 70px;
+}
+
+.wrapper {
+	min-height: 100%;
+}
 
 .row {
 	border: solid 1px black;
 }
+
 
 @import "bootstrap-sprockets";
 @import "bootstrap";

@@ -1,4 +1,20 @@
-<%= form_for(@artist, url: admins_artists_path) do |f| %>
-	<%= f.text_field :artist_name, placeholder: "アーティスト名" %>
-	<%= f.submit 'アーティストを追加' %>
-<% end %>
+<div class="container">
+	<h2 class="item-h2">アーティストの追加</h2>
+	<div class="row">
+		<div class="col col-lg-12 mx-auto">
+			<%= form_for(@artist, url: admins_artists_path) do |f| %>
+			    <% if @artist.errors.any? %>
+            		<div id="error_explanation">
+                		<h2>エラーが発生しました。</h2>
+		                <ul>
+			                <li>空白を埋めてください</li>
+		                </ul>
+	            	</div>
+                <% end %>
+				<%= f.text_field :artist_name, placeholder: "アーティスト名", class:"field" %>
+				<%= f.submit 'アーティストを追加', class:"btn btn-default btn-xs"  %>
+			<% end %>
+			<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+		</div>
+	</div>
+</div>

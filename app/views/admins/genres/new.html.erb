@@ -1,4 +1,20 @@
-<%= form_for(@genre, url: admins_genres_path) do |f| %>
-	<%= f.text_field :genre_name, placeholder: "ジャンル名" %>
-	<%= f.submit 'ジャンルを追加' %>
-<% end %>
+<div class="container">
+	<h2 class="item-h2">ジャンルの追加</h2>
+	<div class="row">
+		<div class="col col-lg-12 mx-auto">
+			<%= form_for(@genre, url: admins_genres_path) do |f| %>
+			    <% if @genre.errors.any? %>
+            		<div id="error_explanation">
+                		<h2>エラーが発生しました。</h2>
+		                <ul>
+			                <li>空白を埋めてください</li>
+		                </ul>
+	            	</div>
+                <% end %>
+				<%= f.text_field :genre_name, placeholder: "ジャンル名", class:"field" %><br>
+				<%= f.submit 'ジャンルを追加', class:"btn btn-default btn-xs" %>
+			<% end %>
+			<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+		</div>
+	</div>
+</div>

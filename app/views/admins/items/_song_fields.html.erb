@@ -1,11 +1,11 @@
 <div class="nested-fields form-inline">
     <%= f.label "曲名" %>
     <br>
-    <%= f.text_field :song_name %>
+    <%= f.text_field :song_name, class:"field" %>
     <br>
     <%= f.label "曲順" %>
     <br>
-    <%= f.number_field :song_number, min: 1 %>
+    <%= f.number_field :song_number, min: 1, class:"field" %>
     <br>
     <%= link_to_remove_association "remove song", f, class:"btn btn-default btn-xs" %>
   </div>

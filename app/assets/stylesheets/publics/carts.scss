@@ -1,3 +1,30 @@
 // Place all the styles related to the publics/carts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.p5{
+	font-size:20px;
+	color:red;
+}
+.p6{
+	margin-top:10px;
+	font-size:20px;
+	margin :px;
+}
+.p7{
+	margin-top:0px;
+	font-size:20px;
+}
+.total_price{
+    display: inline-block;
+    width:100%;
+    float:right;
+}
+.total_price span{
+	color:red;
+}
+.order_path{
+	display: inline-block;
+	width:100%;
+    float:right;
+}
