@@ -3,7 +3,28 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .p5{
-	margin-top:30px;
 	font-size:20px;
 	color:red;
+}
+.p6{
+	margin-top:10px;
+	font-size:20px;
+	margin :px;
+}
+.p7{
+	margin-top:0px;
+	font-size:20px;
+}
+.total_price{
+    display: inline-block;
+    width:100%;
+    float:right;
+}
+.total_price span{
+	color:red;
+}
+.order_path{
+	display: inline-block;
+	width:100%;
+    float:right;
 }
