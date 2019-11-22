@@ -29,7 +29,7 @@ class Admins::EndusersController < Admins::ApplicationController
   def destroy
       enduser = Enduser.find(params[:id])
       enduser.destoroy
-      redirect_to root_path
+      redirect_to admins_endusers_path
   end
 
   private
