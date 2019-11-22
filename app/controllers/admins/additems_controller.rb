@@ -1,13 +1,11 @@
 class Admins::AdditemsController < Admins::ApplicationController
   def new
-  	@items = Item.search(params[:search])
-  	@item = @items.page(params[:page])
+  	@items = Item.search(params[:search]).order("id").page(params[:page])
   	@additem = Additem.new
   	render :new
   end
   def index
-    @additems = Additem.all.order("created_at DESC")
-    @additems = @additems.page(params[:page])
+    @additems = Additem.all.order("created_at DESC").page(params[:page])
   end
 
   def create

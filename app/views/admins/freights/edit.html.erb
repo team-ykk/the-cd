@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col col-lg-12 mx-auto">
 			<%= form_for(@freight, url:admins_freight_path) do |f| %>
-			    <% if @item.errors.any? %>
+			    <% if @freight.errors.any? %>
 	        		<div id="error_explanation">
 	            		<h2>エラーが発生しました。</h2>
 		                <ul>
@@ -15,7 +15,7 @@
 				<%= f.text_field :postage, placeholder:"(例)1000", class:"field" %><span>円</span><br>
 				<%= f.submit "変更", class:"btn btn-default btn-xs" %>
 			<% end %>
-			<%= link_to "変更せずに戻る", admins_freights_path, class:"btn btn-default btn-xs" %>
+			<%= link_to "変更せずに戻る", :back, class:"btn btn-default btn-xs" %>
 		</div>
 	</div>
 </div>

@@ -4,9 +4,10 @@ class Admins::GenresController < Admins::ApplicationController
   end
 
   def create
+    @back_url = session[:my_previous_url]
   	@genre = Genre.new(genre_params)
   	if @genre.save
-  	 redirect_to new_admins_item_path
+  	 redirect_to @back_url
     else
       render :new
     end
