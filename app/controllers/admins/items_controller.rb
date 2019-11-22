@@ -1,8 +1,7 @@
 class Admins::ItemsController < Admins::ApplicationController
   def index
     @item = Item.new
-    @items = Item.search(params[:search])
-    @items = @items.page(params[:page])
+    @items = Item.search(params[:search]).order("shipdate DESC").page(params[:page])
     @tax = Tax.find(1)
   end
 
@@ -23,8 +22,6 @@ class Admins::ItemsController < Admins::ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @disc = @item.discs.build
-    @song = @disc.songs.build
     if @item.save
       redirect_to admins_items_path
     else

@@ -4,9 +4,10 @@ class Admins::LabelsController < Admins::ApplicationController
   end
 
   def create
+    @back_url = session[:my_previous_url]
   	@label = Label.new(label_params)
   	if @label.save
-  	 redirect_to new_admins_item_path
+  	 redirect_to @back_url
     else
       render :new
     end

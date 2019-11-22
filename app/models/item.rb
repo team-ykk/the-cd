@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-	default_scope -> { order(shipdate: :desc) }
 	acts_as_paranoid
 	has_many :add_items
 	has_many :favorites, dependent: :destroy
@@ -22,7 +21,7 @@ class Item < ApplicationRecord
     validates :label_id, presence:true
     validates :artist_id, presence:true
 
-    enum status: { sell: true, sell_stop: false }
+    enum status: { 販売中: true, 販売停止中: false }
 
     def self.search(search)
         if search
