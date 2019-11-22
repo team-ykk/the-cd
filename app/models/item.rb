@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-	default_scope -> { order(shipdate: :desc) }
 	acts_as_paranoid
 	has_many :add_items
 	has_many :favorites, dependent: :destroy

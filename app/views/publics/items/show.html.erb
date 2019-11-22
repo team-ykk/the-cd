@@ -8,12 +8,17 @@
 			   <%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
 			<div class="item-top">
+				<% if enduser_signed_in? %>
 				<%= form_for(@cart_item) do |l| %>
 			    <%= l.hidden_field :cart_id, value: @cart.id %>
 			    <%= l.hidden_field :item_id, value: @item.id %>
 			    <%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
 			    <div class="cart_botton "><%= l.submit "カートに入れる" %></div>
-				<% end %>
+			    <% end %><!-- フォームのEND -->
+				<% else %>
+				<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %>
+				<% end %><!-- IfのEND -->
+
 			    <p><!-- いいね数 --></p>
 			    <p><!-- レビュー数 --></p>
 			</div>
@@ -41,7 +46,7 @@
 		<div class="col col-lg-1"></div>
 		<div class="col col-md-6">
 
-		<!-- <p>レビューの一覧</p> --> -->
+		<!-- <p>レビューの一覧</p> -->
 	</div>
 
 </div>
