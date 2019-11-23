@@ -5,9 +5,6 @@
             <div class="border">
                 </br>
                 <h2>マイページ</h2>
-                <% if flash[:notice] %>
-                    <p><%= flash[:notice] %></p>
-                <% end %>
                 </br>
                 <table class="table">
                     <tbody>
@@ -63,9 +60,33 @@
                 <p>いいねした商品一覧</p>
             </div>
             <table class="table table-striped">
-               
-                <tbody>
-                </tbody>
+                  <thead>
+                    <tr>
+                      <th>発売日</th>
+                      <th><!-- いいね　と　レビュー数 --></th>
+                      <th>商品名・アーティスト名</th>
+                      <th>価格（税込）</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                        <% @favorites.each do |f| %>
+                        <td>
+                            <%= attachment_image_tag f.item, :item_profile, :fill, 60, 60, format: 'jpeg' %></br><p class="p1"><%= f.item.shipdate %></p>
+                        </td>
+                        <td>
+                            <%= f.item.favorites.count %> いいね　</br> <%= f.item.reviews.count %>レビュー数
+                        </td>
+                        <td>
+                            <p><%= f.item.item_name %></p></br><p class="p3"><%= f.item.artist.artist_name  %></p>
+                        </td>
+                        <td>
+                            <p class="p4"><%= (f.item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+                        </td>
+                      </tr>
+                      <% end %>
+                      <%= paginate @favorites, class: "paginate" %>
+                  </tbody>
             </table>
         </div>
     </div>
