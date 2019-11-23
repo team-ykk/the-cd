@@ -2,7 +2,8 @@ class Publics::ItemsController < Publics::ApplicationController
 
   def index
    @item = Item.new
-   @items = Item.search(params[:search]).page(params[:page]).order(shipdate: "DESC")
+   @items = Item.search(params[:search])
+   @items = @items.page(params[:page]).order(shipdate: "DESC")
    @tax = Tax.find(1)
   end
 
@@ -20,7 +21,6 @@ class Publics::ItemsController < Publics::ApplicationController
   end
 
   def ranking
-
   end
 
   private
