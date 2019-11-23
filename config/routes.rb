@@ -39,7 +39,9 @@ Rails.application.routes.draw do
       resource :reviews, only:[:create]
   end
 
+
     get 'ranking' => 'items#ranking'
+
 
   end
 
