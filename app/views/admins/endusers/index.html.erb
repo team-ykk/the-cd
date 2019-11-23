@@ -3,9 +3,9 @@
 		<div class="col">
 				<h2>顧客一覧</h2>
 		</div>
-		<div class="col">
-			<h3>登録ユーザー</h3>
+		<div class="col-lg-7">
 			<div class="user">
+				<p>登録ユーザー</p>
 				<table class="table table-bordered">
 					<thead>
 					    <tr>
@@ -37,6 +37,38 @@
 			          <% end %>
 			        </tbody>
 		        </table>
+		    </div>
+		</div>
+		<div class="col-lg-5">
+			<div class="user">
+		        <p>退会したユーザー一覧</p>
+		        <table class="table table-bordered">
+		        	<thead>
+					    <tr>
+					      <th colspan="1"></th>
+					      <th>名前</th>
+					      <th>フリガナ</th>
+					      <th>メールアドレス</th>
+					    </tr>
+					</thead>
+					<tbody>
+			          <% @endusers_deleate.each do |f| %>
+			            <tr>
+		            	<td>
+		            	</td>
+			              <td>
+			              	<%= f.first_name %><%= f.last_name %>
+			              </td>
+			              <td>
+			              	<%= f.first_name_kana %><%= f.last_name_kana %>
+			              </td>
+			              <td>
+			                <%= f.email %>
+			              </td>
+			            </tr>
+			          <% end %>
+			        </tbody>
+		        </table>
         	</div>
         </div>
 	</div>
@@ -46,7 +78,6 @@
 <style>
 	.user{
 		margin-top: 40px;
-		margin-left: 100px;
-		margin-right: 100px;
+		
 	}
 </style>

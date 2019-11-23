@@ -1,6 +1,7 @@
 class Admins::EndusersController < Admins::ApplicationController
   def index
       @endusers = Enduser.all
+      @endusers_deleate = Enduser.only_deleted.all
   end
 
   def show
