@@ -9,9 +9,10 @@ class Publics::ItemsController < Publics::ApplicationController
   def show
     if enduser_signed_in?
       @cart = current_enduser.cart
+      @cart_in = @cart.cart_items
+      @item = Item.find(params[:id])
     else
     end
-  	@item = Item.find(params[:id])
     @tax = Tax.find(1)
     @cart_item = CartItem.new
     @review = Review.new
@@ -19,6 +20,7 @@ class Publics::ItemsController < Publics::ApplicationController
   end
 
   def ranking
+
   end
 
   private

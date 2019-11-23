@@ -17,14 +17,23 @@
 }
 .total_price{
     display: inline-block;
-    width:100%;
+    width:100% ;
     float:right;
 }
-.total_price span{
+.total_price_red{
 	color:red;
 }
 .order_path{
 	display: inline-block;
-	width:100%;
-    float:right;
+}
+.item-quantity{
+	margin-top:40px;
+	font-size:20px;
+}
+.item-quantity input{
+	width:20px;
+}
+.item_delete_botton{
+	margin-left :40px;
+	margin-top :20px;
 }

@@ -2,37 +2,42 @@
 <div class="container">
 	<h2>商品詳細</h2>
 	<div class="row row-md-10">
-		<div class="col col-lg-1"></div>
+		<div class="col col-lg-1">
+		</div>
 		<div class="col col-md-6">
 			<div class="item-image">
-			   <%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
+				<%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
 			<div class="item-top">
 				<% if enduser_signed_in? %>
 				<%= form_for(@cart_item) do |l| %>
-			    <%= l.hidden_field :cart_id, value: @cart.id %>
-			    <%= l.hidden_field :item_id, value: @item.id %>
-			    <%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
-			    <div class="cart_botton "><%= l.submit "カートに入れる" %></div>
-			    <% end %><!-- フォームのEND -->
-				<% else %>
-				<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %>
-				<% end %><!-- IfのEND -->
-
-			    <p><!-- いいね数 --></p>
-			    <p><!-- レビュー数 --></p>
-			</div>
-			<div class="item-bottom">
-				<p>商品名：<%= @item.item_name %></p>
+				<%= l.hidden_field :cart_id, value: @cart.id %>
+				<%= l.hidden_field :item_id, value: @item.id %>
+				<%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
+				<div class="cart_botton ">
+					<% if CartItem.where(item_id: @item.id, cart_id: current_enduser.cart.id).exists? %>
+					<p class="exist">＊カートに</br>入っています</p>
+					<% else %>
+					<p><%= l.submit "カートに入れる" %></p><i class="fas fa-cart-arrow-down"></i>
+					<% end %>
+					<% end %>
+					<% else %>
+					<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %></div>
+					<% end %>
+				</div>
+				<p><!-- いいね数 --></p>
+                <p><!-- レビュー数 --></p>
+            </div>
+            <div class="item-bottom">
+            	<p>商品名：<%= @item.item_name %></p>
 				<p>アーティスト名：<%= @item.artist.artist_name %></p>
 				<p>レーベル名：<%= @item.label.label_name %></p>
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
-				<p><%= @item.status %></p>
+				<p class="item-status"><%= @item.status %></p>
 			</div>
-	    </div>
-
+		</div>
 		<div class="col col-md-5">
 			<% @item.discs.each do |disc| %>
 			<p class="disc-song-disc"><%= disc.disc_name %></p>
@@ -43,12 +48,42 @@
 		</div>
 	</div>
 	<div class="row-md-10">
-		<div class="col col-lg-1"></div>
+		<div class="col col-lg-1">
+		</div>
 		<div class="col col-md-6">
-
-		<!-- <p>レビューの一覧</p> -->
+			<div class="review">
+				<%= form_for [@item, @review] do |r| %>
+				<h4>レビュー投稿欄</h4>
+				<%= r.text_area :review_content  %>
+				<%= r.submit'投稿' %>
+				<% end %>
+				<% @item.reviews.each do |f| %>
+				<%= f.review_content  %>
+				<% end %>
+			</div>
+		</div>
 	</div>
-
+	<div class="row">
+		<div class="col">
+			<div>
+				<% if @item.favorited_by?(current_enduser) %>
+				<li>
+					<%= link_to item_favorites_path(@item), method: :delete do %>
+					<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+					<%= @item.favorites.count %> いいね
+					<% end %>
+				</li>
+				<% else %>
+				<li>
+					<%= link_to item_favorites_path(@item), method: :post do %>
+					<i class="fa fa-heart-o" aria-hidden="true"></i>
+					<%= @item.favorites.count %> いいね
+					<% end %>
+				</li>
+				<% end %>
+			</div>
+		</div>
+	</div>
 </div>
 
 
