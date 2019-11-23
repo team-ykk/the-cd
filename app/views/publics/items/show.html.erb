@@ -25,8 +25,8 @@
 					<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %></div>
 					<% end %>
 				</div>
-				<p><!-- いいね数 --></p>
-                <p><!-- レビュー数 --></p>
+				<p><%= @item.favorites.count %> いいね</p>
+                <p><%= @item.reviews.count %>レビュー数</p>
             </div>
             <div class="item-bottom">
             	<p>商品名：<%= @item.item_name %></p>
