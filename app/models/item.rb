@@ -23,6 +23,10 @@ class Item < ApplicationRecord
 
     enum status: { 販売中: true, 販売停止中: false }
 
+    def favorited_by?(enduser)
+        favorites.where(enduser_id: enduser.id).exists?
+    end
+
     def self.search(search)
         if search
             Item.where(['item_name LIKE ?', "%#{search}%"])
