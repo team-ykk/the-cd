@@ -25,17 +25,17 @@
                 	<p class="p5"><%= t.subtotal.round.to_s(:delimited, delimiter: ',')%>円(税込)</p></td>
                 <td>
                   <%= form_for t do |f| %>
-                  <label>数量</label>
+                  <label class="item-quantity">数量</label>
                   <%= f.number_field :quantity, min: 1, class:"field" %>
                   <%= f.submit "保存", class:"btn btn-default btn-sm" %>
                   <% end %>
-                  <%= link_to "カートから削除", cart_item_path(t), method: :delete %>
+                  <%= link_to "カートから削除", cart_item_path(t), class: 'btn btn-default item_delete_botton' , method: :delete %>
                 </td>
               </tr>
               <% end %>
           </tbody>
        </table>
-      <h3 class="total_price">合計金額　<%= @cart_total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</h3>
+      <h3 class="total_price">合計金額 <%= @cart_total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</h3>
        <div class="order_path"><%= link_to "購入画面へ進む", new_order_path, class: 'btn btn-primary cart_botton' %></div>
      </div>
    </div>
