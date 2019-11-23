@@ -29,9 +29,9 @@
                 <td><p class="p4"><%= (item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p></td>
               </tr>
               <% end %>
-              <%= paginate @items, class: "paginate" %>
           </tbody>
        </table>
+       <%= paginate @items, class: "paginate" %>
      </div>
    </div>
  </div>

@@ -9,22 +9,25 @@
 				<%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
 			<div class="item-top">
-				<% if enduser_signed_in? %>
+			 <% if enduser_signed_in? %>
 				<%= form_for(@cart_item) do |l| %>
 				<%= l.hidden_field :cart_id, value: @cart.id %>
 				<%= l.hidden_field :item_id, value: @item.id %>
 				<%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
-				<div class="cart_botton ">
-					<% if CartItem.where(item_id: @item.id, cart_id: current_enduser.cart.id).exists? %>
-					<p class="exist">＊カートに</br>入っています</p>
-					<% else %>
-					<p><%= l.submit "カートに入れる" %></p><i class="fas fa-cart-arrow-down"></i>
-					<% end %>
-					<% end %>
-					<% else %>
-					<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %></div>
-					<% end %>
-				</div>
+				   <% if CartItem.where(item_id: @item.id, cart_id: current_enduser.cart.id).exists? %>
+				   <p class="exist">＊カートに</br>入っています</p>
+				   <% else %>
+				   <p><%= l.submit "カートに入れる" %></p><i class="fas fa-cart-arrow-down"></i>
+				   <% end %>
+			 <% else %>
+			    <% end %>
+			 <% end %>
+
+			 <% if enduser_signed_in? %>
+			 <% else %>
+			 	<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %>
+			 <% end %>
+
 				<p><%= @item.favorites.count %> いいね</p>
                 <p><%= @item.reviews.count %>レビュー数</p>
             </div>
@@ -35,7 +38,15 @@
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
+
 				<p class="item-status"><%= @item.status %></p>
+
+				<% if @item.status == "販売中" %>
+				<div class="sell_now">販売中</div>
+				<% else %>
+				<div class="sell_not_now">販売停止中</div>
+				<% end %>
+
 			</div>
 		</div>
 		<div class="col col-md-5">
@@ -63,6 +74,8 @@
 			</div>
 		</div>
 	</div>
+
+	<% if enduser_signed_in? %>
 	<div class="row">
 		<div class="col">
 			<div>
@@ -84,10 +97,9 @@
 			</div>
 		</div>
 	</div>
+	<% else %>
+	<% end %>
 </div>
-
-
-
 
 
 
