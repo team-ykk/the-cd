@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       resource :favorites, only:[:create, :destroy]
       resource :reviews, only:[:create]
   end
-    get 'items/ranking'
+    get 'ranking' => 'items#ranking'
   end
 
   namespace :admins do
