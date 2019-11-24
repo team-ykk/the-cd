@@ -17,7 +17,7 @@
 				   <% if CartItem.where(item_id: @item.id, cart_id: current_enduser.cart.id).exists? %>
 				   <p class="exist">＊カートに</br>入っています</p>
 				   <% else %>
-				   <p><%= l.submit "カートに入れる" %></p><i class="fas fa-cart-arrow-down"></i>
+				   <p class="p9"><i class="fas fa-cart-arrow-down "></i>   <%= l.submit "カートに入れる",class: 'btn btn-primary ' %></p>
 				   <% end %>
 			 <% else %>
 			    <% end %>
@@ -25,11 +25,26 @@
 
 			 <% if enduser_signed_in? %>
 			 <% else %>
-			 	<%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %>
+			 	<div class="link"><i class="fas fa-cart-arrow-down"></i>    <%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %></div>
 			 <% end %>
 
-				<p><%= @item.favorites.count %> いいね</p>
-                <p><%= @item.reviews.count %>レビュー数</p>
+
+            <% if enduser_signed_in? %>
+			<% if @item.favorited_by?(current_enduser) %>
+				<p class="p9"><%= link_to item_favorites_path(@item), method: :delete do %>
+				<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+				<%= @item.favorites.count %> いいね</p>
+				<% end %>
+			<% else %>
+				<p class="p9"><%= link_to item_favorites_path(@item), method: :post do %>
+				<i class="fa fa-heart-o" aria-hidden="true"></i>
+				<%= @item.favorites.count %> いいね</p>
+				<% end %>
+			<% end %>
+			<% else %>
+			<p class="p10"><i class="fas fa-heart"></i>  いいね <%= @item.favorites.count %></p>
+            <% end %>
+                <p class="p10"><i class="far fa-comment-dots"></i> レビュー数 <%= @item.reviews.count %></p>
             </div>
             <div class="item-bottom">
             	<p>商品名：<%= @item.item_name %></p>
@@ -38,15 +53,11 @@
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
-
-				<p class="item-status"><%= @item.status %></p>
-
 				<% if @item.status == "販売中" %>
 				<div class="sell_now">販売中</div>
 				<% else %>
 				<div class="sell_not_now">販売停止中</div>
 				<% end %>
-
 			</div>
 		</div>
 		<div class="col col-md-5">
@@ -58,52 +69,43 @@
 			<% end %>
 		</div>
 	</div>
-	<div class="row-md-10">
+	<div class="row row-md-10">
 		<div class="col col-lg-1">
 		</div>
-		<div class="col col-md-6">
+		<div class="col col-md-10">
 			<div class="review">
+			  <% if enduser_signed_in? %>
+			  <span class="span-notice"><%= notice %></span>
 				<%= form_for [@item, @review] do |r| %>
-				<h4>レビュー投稿欄</h4>
-				<%= r.text_area :review_content  %>
+				<h3 class="review-h3"><i class="far fa-comment-dots">  </i> レビュー投稿欄</h3>
+				<div class="review-area"><%= r.text_area :review_content  %></div>
 				<%= r.submit'投稿' %>
 				<% end %>
-				<% @item.reviews.each do |f| %>
-				<%= f.review_content  %>
-				<% end %>
+			  <% else %>
+			  <% end %>
+				<div class="review-content">
+					<h3 class="review-h3">レビュー 一覧</h3>
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="col-md-2"><p>ユーザー名</p></th>
+								<th><p>レビュー内容</p></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @reviews.each do |f| %>
+							<tr>
+								<td><%= f.enduser.first_name %><%= f.enduser.last_name %></td>
+								<td><%= f.review_content %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<%= paginate @reviews, class: "paginate" %>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<% if enduser_signed_in? %>
-	<div class="row">
-		<div class="col">
-			<div>
-				<% if @item.favorited_by?(current_enduser) %>
-				<li>
-					<%= link_to item_favorites_path(@item), method: :delete do %>
-					<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-					<%= @item.favorites.count %> いいね
-					<% end %>
-				</li>
-				<% else %>
-				<li>
-					<%= link_to item_favorites_path(@item), method: :post do %>
-					<i class="fa fa-heart-o" aria-hidden="true"></i>
-					<%= @item.favorites.count %> いいね
-					<% end %>
-				</li>
-				<% end %>
-			</div>
-		</div>
-	</div>
-	<% else %>
-	<% end %>
-</div>
-
-
-
-
 
 
 

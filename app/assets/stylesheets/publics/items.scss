@@ -21,10 +21,6 @@
 	margin-left: 0 ;
 }
 
-.item-h2{
-	margin-left: 5% ;
-}
-
 .col-lg-8 span{
 	float: right ;
 	margin-right: 20px ;
@@ -39,6 +35,7 @@
 	margin-top:40px;
 	font-size:20px;
 }
+
 .p4{
 	margin-top:60px;
 	font-size:20px;
@@ -60,6 +57,7 @@
 	float:left;
 	width:480px;
 	margin-top: 50px ;
+
 }
 
 .btn-cart{
@@ -97,21 +95,8 @@
 	float:left;
 	display:inline-block;
 }
-.item-top a{
-	margin-left :30px;
-	margin-top :30px;
-	width :160px;
-	height :45px;
-	font-size: 18px;
-}
-.exist{
-	font-size: 20px;
-	margin-left :30px;
-	margin-top :30px;
-	width:100%;
-	background-color :#00bfff;
-	text-align:center;
-}
+
+
 .item-status{
 	font-size: 20px;
 	background-color :#ffff00;
@@ -119,17 +104,70 @@
 	display:inline-block;
 	padding:5px;
 }
+.sell_now{
+	font-size: 20px;
+	background-color :#00bfff;
+	text-align:center;
+	display:inline-block;
+	padding:5px;
+}
+.sell_not_now{
+	font-size: 20px;
+	background-color :#ff0000;
+	text-align:center;
+	display:inline-block;
+	padding:5px;
+}
 
 
+.item-top{
+	width :50%;
+	height:260px;
+	padding-top:15px;
+}
+.exist{
+	font-size: 20px;
+	margin-left :30px;
+	margin-top :30px;
+	width:60%;
+	background-color :#00bfff;
+	text-align:center;
+}
+.p9{
+	margin-top:20px;
+	margin-left:20px;
+	font-size:20px;
+}
+.link{
+	margin-top:20px;
+	margin-left:20px;
+}
+.fa-cart-arrow-down{
+	font-size:20px;
+}
 
-
-
-
-
-
-
-
-
+.review-area textarea{
+	width:100% ;
+}
+.p10{
+	margin-top:20px;
+	margin-left:20px;
+	font-size:20px;
+}
+.p8{
+	margin-top:45px;
+	margin-left:20px;
+	font-size:15px;
+}
+.review-content{
+	margin-top:60px;
+}
+.review-h3{
+	margin-bottom:20px;
+}
+.span-notice{
+	color: red;
+}
 
 
 

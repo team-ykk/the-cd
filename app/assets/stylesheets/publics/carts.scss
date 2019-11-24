@@ -25,6 +25,7 @@
 }
 .order_path{
 	display: inline-block;
+	margin:10px;
 }
 .item-quantity{
 	margin-top:40px;
@@ -36,4 +37,7 @@
 .item_delete_botton{
 	margin-left :40px;
 	margin-top :20px;
+}
+.cart_item_bottom{
+	text-align :right;
 }
