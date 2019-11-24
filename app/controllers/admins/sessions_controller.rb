@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Admins::SessionsController < Devise::SessionsController
+  #def create
+    #@admin = Admin.new(admin_params)
+    #if @admin.save
+      #redirect_to admins_items
+    #else
+      #render :new
+    #end
+  #end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
