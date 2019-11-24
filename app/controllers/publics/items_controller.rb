@@ -1,4 +1,4 @@
-class Publics::ItemsController < Publics::ApplicationController
+class Publics::ItemsController < ApplicationController
 
   def index
    @item = Item.new
@@ -12,7 +12,8 @@ class Publics::ItemsController < Publics::ApplicationController
     @tax = Tax.find(1)
     @cart_item = CartItem.new
     @review = Review.new
-    @reviews = Review.all
+    @reviews = Review.where(item_id: @item.id)
+    @reviews = @reviews.page(params[:page]).reverse_order
     if enduser_signed_in?
       @cart = current_enduser.cart
       @cart_in = @cart.cart_items
@@ -23,7 +24,7 @@ class Publics::ItemsController < Publics::ApplicationController
   def ranking
      @item = Item.new
      @tax = Tax.find(1)
-     @items = Item.find(Favorite.group(:item_id).order('count(item_id) desc').pluck(:item_id))
+     @items = Item.find(Favorite.group(:item_id).order('count(item_id) desc').limit(50).pluck(:item_id))
   end
 
   def search

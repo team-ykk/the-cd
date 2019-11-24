@@ -5,8 +5,16 @@ class Publics::ReviewsController < ApplicationController
 		@review = current_enduser.reviews.new(review_params)
 		@review.item_id = @item.id
 		@review.enduser_id = current_enduser.id
-		@review.save
-		redirect_to item_path(@item.id)
+		@tax = Tax.find(1)
+		@cart_item = CartItem.new
+		@cart = current_enduser.cart
+		@cart_in = @cart.cart_items
+		@reviews = Review.all
+		if @review.save
+			redirect_to item_path(@item.id)
+	    else
+			redirect_to item_path(@item.id),notice: "空白で投稿はできません"
+	    end
 	end
 
 private

@@ -1,7 +1,7 @@
 
 <div class="container">
+  <h2>カート一覧</h2>
   <div class="row">
-    <h2 class="item-h2">カート一覧</h2>
     <div class="col col-lg-2">
     </div>
     <div class="col col-lg-8">
@@ -19,7 +19,7 @@
                 <% @cart.cart_items.each do |t| %>
                 <td><%= attachment_image_tag t.item, :item_profile, :fill, 130, 130, format: 'jpeg' %></br>
                 	<p class="p1"><%= t.item.shipdate %></p></td>
-                <td><!-- いいね数</br>レビュー数 --></td>
+                <td></td>
                 <td><p class="p6"><%= link_to item_path(t.item.id) do %><%= t.item.item_name %><% end %></p></br>
                 	<p class="p7"><%= t.item.artist.artist_name  %></p></br>
                 	<p class="p5"><%= t.subtotal.round.to_s(:delimited, delimiter: ',')%>円(税込)</p></td>
@@ -35,8 +35,10 @@
               <% end %>
           </tbody>
        </table>
-      <h3 class="total_price">合計金額 <%= @cart_total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</h3>
+       <div class="cart_item_bottom">
+         <h3 class="total_price">合計金額 <%= @cart_total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</h3>
        <div class="order_path"><%= link_to "購入画面へ進む", new_order_path, class: 'btn btn-primary cart_botton' %></div>
+       </div>
      </div>
    </div>
  </div>
