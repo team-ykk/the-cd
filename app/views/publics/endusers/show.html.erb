@@ -50,6 +50,9 @@
 		            </tbody>
 		        </table>
 		        <%= link_to 'ユーザー情報編集画面へ',edit_enduser_path, class:"btn btn-primary" %>
+		        <div class="kounyuu">
+		        	<%= link_to '購入履歴一覧へ', orders_path, class:"btn btn-primary" %>
+		        </div>
 		    </div>
 	        <div class="taikai">
 	        	<%= link_to "退会する", enduser_path, class:"btn btn-danger", method: :delete, "data-confirm" => "本当に退会しますか?" %>
@@ -85,7 +88,7 @@
 		                </td>
 		              </tr>
 		              <% end %>
-		              <%= paginate @favorites, class: "paginate" %>
+		             
 		          </tbody>
             </table>
 		</div>
@@ -103,6 +106,9 @@
     .border{
     	margin-top: 20px;
     	margin-left: 50px;
+    }
+    .kounyuu{
+    	margin-top: 20px;
     }
 </style>
 

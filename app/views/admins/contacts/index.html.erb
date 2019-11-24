@@ -8,8 +8,12 @@
 					    <tr>
 					      <th colspan="1"></th>
 					      <th>受信履歴</th>
-					      <th>ユーザー名</th>
-					      <th>お問合せ内容</th>
+					      <th class="col-md-10">
+					      	ユーザー名
+					      </th>
+					      <th>
+					    	お問合せ内容
+					      </th>
 					      <th colspan="4"></th>
 					    </tr>
 					</thead>
@@ -23,7 +27,7 @@
 			  				<%= f.created_at.strftime("%Y-%m-%d %H:%M") %>
 			              </td>
 			              <td>
-			                <%=f.enduser.first_name %><%= f.enduser.last_name %>
+			                <%=f.alladd.first_name %><%= f.alladd.last_name %>
 			              </td>
 			              <td>
 			              	<%= f.contact_content %>
