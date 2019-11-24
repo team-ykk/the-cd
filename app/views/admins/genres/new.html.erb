@@ -1,20 +1,45 @@
 <div class="container">
-	<h2 class="item-h2">ジャンルの追加</h2>
+	<h2>ジャンルの追加</h2>
 	<div class="row">
 		<div class="col col-lg-12 mx-auto">
-			<%= form_for(@genre, url: admins_genres_path) do |f| %>
-			    <% if @genre.errors.any? %>
-            		<div id="error_explanation">
-                		<h2>エラーが発生しました。</h2>
-		                <ul>
-			                <li>空白を埋めてください</li>
-		                </ul>
-	            	</div>
-                <% end %>
-				<%= f.text_field :genre_name, placeholder: "ジャンル名", class:"field" %><br>
-				<%= f.submit 'ジャンルを追加', class:"btn btn-default btn-xs" %>
-			<% end %>
-			<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+			<div class="add_btn">
+				<%= form_for(@genre, url: admins_genres_path) do |f| %>
+				    <% if @genre.errors.any? %>
+	            		<div id="error_explanation">
+	                		<h2>エラーが発生しました。</h2>
+			                <ul>
+				                <li>既に存在しているor空欄を埋めてください</li>
+			                </ul>
+		            	</div>
+	                <% end %>
+					<%= f.text_field :genre_name, placeholder: "ジャンル名", class:"field" %>
+					<%= f.submit 'ジャンルを追加', class:"btn btn-default btn-xs" %>
+				    <% if @genre.errors.any? %>
+						<%= link_to "追加せずに戻る", @back_url, class:"btn btn-default btn-xs" %>
+					<% else %>
+						<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+					<% end %>
+				<% end %>
+			</div>
+			<br>
+			<div>
+				<table class="table table-sm table-bordered">
+					<thead>
+						<tr>
+							<th>登録番号</th>
+							<th>ジャンル名</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @genres.each do |genre| %>
+						<tr>
+							<td><%= genre.id %></td>
+							<td><%= genre.genre_name %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

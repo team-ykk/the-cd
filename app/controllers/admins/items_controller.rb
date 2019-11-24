@@ -12,8 +12,14 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    @item = Item.with_deleted.find(params[:id])
     @tax = Tax.find(1)
+  end
+
+  def restore
+    @item = Item.with_deleted.find(params[:id])
+    @item.restore
+    redirect_to admins_item_path
   end
 
   def edit
@@ -30,11 +36,16 @@ class Admins::ItemsController < Admins::ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
-    if @item.update(item_params)
-      redirect_to admins_item_path(@item)
+    @item = Item.with_deleted.find(params[:id])
+    if  @item.deleted_at == nil
+      if @item.update(item_params)
+        redirect_to admins_item_path(@item)
+      else
+        render :edit
+      end
     else
-      render :edit
+      @item.restore
+      redirect_to admins_item_path(@item)
     end
   end
 

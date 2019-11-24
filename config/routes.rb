@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     resources :additems, only: [:create, :index, :new]
   end
   namespace :admins do
-    resources :freights, only: [:edit, :update, :index]
+    resources :freights, only: [:show, :edit, :update, :index]
   end
   namespace :admins do
     resources :contact_replies, only: [:create, :show, :update]
@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     resources :items do
       resources :reviews, only: [:destroy, :edit, :update]
     end
-    get 'items/ranking'
+    get '/ranking' => 'items#ranking'
   end
   namespace :admins do
     resources :artists, only: [:create, :new, :index]

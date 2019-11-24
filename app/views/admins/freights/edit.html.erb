@@ -1,5 +1,5 @@
 <div class="container">
-	<h2 class="item-h2">送料変更フォーム</h2>
+	<h2>送料変更フォーム</h2>
 	<div class="row">
 		<div class="col col-lg-12 mx-auto">
 			<%= form_for(@freight, url:admins_freight_path) do |f| %>
@@ -7,15 +7,19 @@
 	        		<div id="error_explanation">
 	            		<h2>エラーが発生しました。</h2>
 		                <ul>
-			                <li>空白を埋めてください</li>
+			                <li>空欄を埋めてください</li>
 		                </ul>
 	            	</div>
 	            <% end %>
 				<label>送料:</label>
-				<%= f.text_field :postage, placeholder:"(例)1000", class:"field" %><span>円</span><br>
-				<%= f.submit "変更", class:"btn btn-default btn-xs" %>
+				<%= f.text_field :postage, placeholder:"(例)1000", class:"field" %><span>円</span><br><br>
+				<%= f.submit "変更", class:"btn btn-default btn-xs" %><br>
+				<% if @freight.errors.any? %>
+					<%= link_to "変更せずに戻る", @back_url, class:"btn btn-default btn-xs" %>
+				<% else %>
+					<%= link_to "変更せずに戻る", :back, class:"btn btn-default btn-xs" %>
+				<% end %>
 			<% end %>
-			<%= link_to "変更せずに戻る", :back, class:"btn btn-default btn-xs" %>
 		</div>
 	</div>
 </div>

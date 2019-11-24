@@ -1,9 +1,11 @@
 class Admins::GenresController < Admins::ApplicationController
   def new
   	@genre = Genre.new
+    @genres = Genre.all
   end
 
   def create
+    @genres = Genre.all
     @back_url = session[:my_previous_url]
   	@genre = Genre.new(genre_params)
   	if @genre.save

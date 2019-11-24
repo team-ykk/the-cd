@@ -1,20 +1,45 @@
 <div class="container">
-	<h2 class="item-h2">ラベルの追加</h2>
+	<h2>レーベルの追加</h2>
 	<div class="row">
 		<div class="col col-lg-12 mx-auto">
-			<%= form_for(@label, url: admins_labels_path) do |f| %>
-			    <% if @label.errors.any? %>
-            		<div id="error_explanation">
-                		<h2>エラーが発生しました。</h2>
-		                <ul>
-			                <li>空白を埋めてください</li>
-		                </ul>
-	            	</div>
-                <% end %>
-				<%= f.text_field :label_name, placeholder: "レーベル名", class:"field" %><br>
-				<%= f.submit 'レーベルを追加', class:"btn btn-default btn-xs"  %>
-			<% end %>
-			<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+			<div class="add_btn">
+				<%= form_for(@label, url: admins_labels_path) do |f| %>
+				    <% if @label.errors.any? %>
+	            		<div id="error_explanation">
+	                		<h2>エラーが発生しました。</h2>
+			                <ul>
+				                <li>既に存在しているor空欄を埋めてください</li>
+			                </ul>
+		            	</div>
+	                <% end %>
+					<%= f.text_field :label_name, placeholder: "レーベル名", class:"field" %>
+					<%= f.submit 'レーベルを追加', class:"btn btn-default btn-xs"  %>
+					<% if @label.errors.any? %>
+						<%= link_to "追加せずに戻る", @back_url, class:"btn btn-default btn-xs" %>
+					<% else %>
+						<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+					<% end %>
+				<% end %>
+			</div>
+			<br>
+			<div>
+				<table class="table table-sm table-bordered">
+					<thead>
+						<tr>
+							<th>登録番号</th>
+							<th>レーベル名</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @labels.each do |label| %>
+						<tr>
+							<td><%= label.id %></td>
+							<td><%= label.label_name %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

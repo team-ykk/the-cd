@@ -1,9 +1,11 @@
 class Admins::ArtistsController < Admins::ApplicationController
   def new
   	@artist = Artist.new
+    @artists = Artist.all
   end
 
   def create
+    @artists = Artist.all
     @back_url = session[:my_previous_url]
   	@artist = Artist.new(artist_params)
     if	@artist.save

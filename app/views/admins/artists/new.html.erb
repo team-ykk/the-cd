@@ -1,20 +1,45 @@
 <div class="container">
-	<h2 class="item-h2">アーティストの追加</h2>
+	<h2>アーティストの追加</h2>
 	<div class="row">
 		<div class="col col-lg-12 mx-auto">
-			<%= form_for(@artist, url: admins_artists_path) do |f| %>
-			    <% if @artist.errors.any? %>
-            		<div id="error_explanation">
-                		<h2>エラーが発生しました。</h2>
-		                <ul>
-			                <li>空白を埋めてください</li>
-		                </ul>
-	            	</div>
-                <% end %>
-				<%= f.text_field :artist_name, placeholder: "アーティスト名", class:"field" %>
-				<%= f.submit 'アーティストを追加', class:"btn btn-default btn-xs"  %>
-			<% end %>
-			<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+			<div class="add_btn">
+				<%= form_for(@artist, url: admins_artists_path) do |f| %>
+				    <% if @artist.errors.any? %>
+	            		<div id="error_explanation">
+	                		<h2>エラーが発生しました。</h2>
+			                <ul>
+				                <li>既に存在しているor空欄を埋めてください</li>
+			                </ul>
+		            	</div>
+	                <% end %>
+					<%= f.text_field :artist_name, placeholder: "アーティスト名", class:"field" %>
+					<%= f.submit 'アーティストを追加', class:"btn btn-default btn-xs"  %>
+					<% if @artist.errors.any? %>
+						<%= link_to "追加せずに戻る", @back_url, class:"btn btn-default btn-xs" %>
+					<% else %>
+						<%= link_to "追加せずに戻る", :back, class:"btn btn-default btn-xs" %>
+					<% end %>
+				<% end %>
+			</div>
+			<br>
+			<div>
+				<table class="table table-sm table-bordered">
+					<thead>
+						<tr>
+							<th>登録番号</th>
+							<th>ジャンル名</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @artists.each do |artist| %>
+						<tr>
+							<td><%= artist.id %></td>
+							<td><%= artist.artist_name %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
