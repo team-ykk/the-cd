@@ -20,10 +20,16 @@
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
 				<p><%= @item.status %></p>
 			  </div>
-			  <ul class="item_nav">
-				<li><%= link_to "商品内容の編集", edit_admins_item_path(@item), class:"btn btn-default btn-lg" %></li>
-				<li><%= link_to "商品の削除", admins_item_path(@item), method: :delete ,class:"btn btn-default btn-lg" %></li>
-			  </ul>
+              <% if @item.deleted_at == nil %>
+				  <ul class="item_nav">
+					<li><%= link_to "商品内容の編集", edit_admins_item_path(@item), class:"btn btn-default btn-lg" %></li>
+					<li><%= link_to "商品の削除", admins_item_path(@item), method: :delete ,class:"btn btn-default btn-lg" %></li>
+				  </ul>
+                <% else %>
+	                <ul class="item_nav">
+	                	<li><%= link_to "商品情報の復元", admins_item_path(@item), method: :patch, class:"btn btn-default btn-lg" %></li>
+	                </ul>
+              <% end %>
 			</div>
 
 	    </div>

@@ -8,7 +8,7 @@
         		<div id="error_explanation">
             		<h2>エラーが発生しました。</h2>
 	                <ul>
-		                <li>空白を埋めてください</li>
+		                <li>空欄を埋めてください</li>
 	                </ul>
             	</div>
             <% end %>
@@ -16,7 +16,9 @@
 				<tbody>
 					<tr>
 						<th><label class="label_name label_height">ジャケット画像</label></th>
-						<td><%= f.attachment_field :item_profile %>
+						<td>
+							<img src="" id="img_prev">
+							<%= f.attachment_field :item_profile, class:"field" %>
 						</td>
 					</tr>
 					<tr>
@@ -66,7 +68,7 @@
 							<label class="label_name label_height">価格</label>
 						</th>
 						<td>
-							<%= f.text_field :price, placeholder: "1000(税抜)", class:"field" %>
+							<%= f.text_field :price, placeholder: "(例)1000※税抜", class:"field" %>
 						</td>
 					</tr>
 					<tr>

@@ -8,7 +8,7 @@
         		<div id="error_explanation">
             		<h2>エラーが発生しました。</h2>
 	                <ul>
-		                <li>空白を埋めてください</li>
+		                <li>空欄を埋めてください</li>
 	                </ul>
             	</div>
             <% end %>
@@ -16,7 +16,9 @@
 				<tbody>
 					<tr>
 						<th><label class="label_name label_height">ジャケット画像</label></th>
-						<td><%= f.attachment_field :item_profile %>
+						<td>
+						   <%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg', size: "100x100", id: "img_prev", class:"field" %>
+							<%= f.attachment_field :item_profile %>
 						</td>
 					</tr>
 					<tr>

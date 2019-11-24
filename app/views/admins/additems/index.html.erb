@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h2 class="item-h2">入荷履歴一覧</h2>
+    <h2>入荷履歴一覧</h2>
     <div class="col col-lg-2">
     </div>
     <div class="col col-lg-8">
@@ -8,7 +8,12 @@
           <% (@additems).each do |additem| %>
           <thead>
             <tr>
-              <th><%= additem.created_at.strftime("%Y-%m-%d %H:%M") %></th>
+              <th>
+                <% if additem.alladd.deleted_at.blank? %>
+                <% else %>
+                  削除済み<br>
+                <% end %>
+                <%= additem.created_at.strftime("%Y-%m-%d %H:%M") %></th>
               <th></th>
               <th></th>
             </tr>
@@ -16,7 +21,7 @@
           <tbody>
               <tr>
                 <td>
-                	<%= attachment_image_tag additem.item, :item_profile, :fill, 120, 120, format: 'jpeg' %>
+                	<%= attachment_image_tag additem.alladd, :item_profile, :fill, 120, 120, format: 'jpeg' %>
                 </td>
                 <td>
                 	<p class="content">
@@ -31,10 +36,10 @@
                 </td>
                 <td>
                 	<p class="content">
-                		<%= link_to admins_item_path(additem) do %><%= additem.item.item_name %><% end %>
+                		<%= link_to admins_item_path(additem.item_id) do %><%= additem.alladd.item_name %><% end %>
                 	</p>
                 	<p class="content">
-                		<%= additem.item.artist.artist_name %>
+                		<%= additem.alladd.artist.artist_name %>
                 	</p>
                 	<p class="content">
                 		<%= additem.add_item %>　枚

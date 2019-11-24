@@ -70,11 +70,11 @@ header {
 .nav-title:after {
 	position: absolute;
 	content: '';
-	left: -7px;
-	top: -7px;
-	border-width: 0 0 15px 15px;
+	left: -7.5px;
+	top: -7.5px;
+	border-width: 15px 15px 0 0;
 	border-style: solid;
-	border-color: #fff #fff #696969;
+	border-color: white #696969 transparent transparent;
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
