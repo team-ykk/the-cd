@@ -1,12 +1,13 @@
 <h1>購入画面</h1>
+
+
+<% if current_enduser.cart.cart_items.exists? %>
 <h4>お届け先</h4>
-
-
 <%= form_for (@order) do |f| %>
 		<% current_enduser.addresses.each do |a| %>
 			<%= f.radio_button :address_id, a.id %>
 			<%= a.postcode %>
-			<%= a.prefecture_id %>
+			<%= @tests[a.prefecture_id] %>
 			<%= a.address %>
 		<% end %>
 
@@ -23,7 +24,10 @@
 
 
 		<h4>送料　全国一律¥500-</h4>
-
+		<h3 class="total_price">合計金額<%= ((@cart_total_price) + (@freight.postage)).round.to_s(:delimited, delimiter: ',')%>円(税込)</h3>
 		<%= f.submit "購入確定" %>
+<% end %>
+<% else %>
+<p>カートの中身が空です</p>
 <% end %>
 
