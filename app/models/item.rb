@@ -34,4 +34,12 @@ class Item < ApplicationRecord
             Item.all
         end
     end
+
+    def self.search_admin(search)
+        if search
+            Item.with_deleted.where(['item_name LIKE ?', "%#{search}%"])
+        else
+            Item.with_deleted.all
+        end
     end
+end

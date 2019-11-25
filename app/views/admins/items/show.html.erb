@@ -7,8 +7,14 @@
 			   <%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
 			<div class="item-top">
-			    <p><!-- いいね数 --></p>
-			    <p><!-- レビュー数 --></p>
+			    <p class="p10">
+			    	<i class="fas fa-heart"></i>
+				    いいね <%= @item.favorites.count %>
+				</p>
+			    <p class="p10">
+			    	<i class="far fa-comment-dots"></i>
+			    	レビュー数 <%= @item.reviews.count %>
+			    </p>
 			</div>
 			<div class="item-bottom">
 			  <div class="content">
@@ -18,28 +24,31 @@
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
-				<p><%= @item.status %></p>
+				<% if @item.status == "販売中" %>
+					<p class="sell_now">販売中</p>
+				<% else %>
+					<p class="sell_not_now">販売停止中</p>
+				<% end %>
+				<p>在庫数：<%= @item.stock %></p>
 			  </div>
               <% if @item.deleted_at == nil %>
 				  <ul class="item_nav">
 					<li><%= link_to "商品内容の編集", edit_admins_item_path(@item), class:"btn btn-default btn-lg" %></li>
 					<li><%= link_to "商品の削除", admins_item_path(@item), method: :delete ,class:"btn btn-default btn-lg" %></li>
 				  </ul>
-                <% else %>
+              <% else %>
 	                <ul class="item_nav">
 	                	<li><%= link_to "商品情報の復元", admins_item_path(@item), method: :patch, class:"btn btn-default btn-lg" %></li>
 	                </ul>
               <% end %>
 			</div>
-
 	    </div>
-
 		<div class="col col-md-5">
 			<% @item.discs.each do |disc| %>
-			<p class="disc-song-disc"><%= disc.disc_name %></p>
-			<% disc.songs.each do |song| %>
-			<p class="disc-song-song"><%= song.song_name %></p>
-			<% end %>
+				<p class="disc-song-disc"><%= disc.disc_name %></p>
+				<% disc.songs.each do |song| %>
+					<p class="disc-song-song"><%= song.song_name %></p>
+				<% end %>
 			<% end %>
 		</div>
 	</div>
@@ -62,14 +71,16 @@
 						<thead>
 							<tr>
 								<th class="col-md-2"><p>ユーザー名</p></th>
-								<th><p>レビュー内容</p></th>
+								<th class="col-md-8"><p>レビュー内容</p></th>
+								<th class="col-md-2">管理者機能</th>
 							</tr>
 						</thead>
 						<tbody>
-							<% @reviews.each do |f| %>
+							<% @item.reviews.each do |review| %>
 							<tr>
-								<td><%= f.enduser.first_name %><%= f.enduser.last_name %></td>
-								<td><%= f.review_content %></td>
+								<td><%= review.enduser.first_name %><%= review.enduser.last_name %></td>
+								<td><%= review.review_content %></td>
+								<td><%= link_to "削除", admins_item_review_path(@item.id, review.id), method: :delete, data: { confirm: '削除しますか？' }, class:"btn btn-default btn-xs"  %></td>
 							</tr>
 							<% end %>
 						</tbody>
