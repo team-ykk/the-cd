@@ -1,7 +1,11 @@
 class Admins::ItemsController < Admins::ApplicationController
   def index
-    @item = Item.new
     @items = Item.search(params[:search]).order("shipdate DESC").page(params[:page])
+    @tax = Tax.find(1)
+  end
+
+  def ranking
+    @items = Item.find(Favorite.group(:item_id).order(Arel.sql("count(item_id) desc").limit(50).pluck(:item_id)))
     @tax = Tax.find(1)
   end
 
@@ -14,6 +18,8 @@ class Admins::ItemsController < Admins::ApplicationController
   def show
     @item = Item.with_deleted.find(params[:id])
     @tax = Tax.find(1)
+    @reviews = Review.where(item_id: @item.id)
+    @reviews = @reviews.page(params[:page]).reverse_order
   end
 
   def restore

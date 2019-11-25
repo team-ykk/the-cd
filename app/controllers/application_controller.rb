@@ -15,7 +15,20 @@ class ApplicationController < ActionController::Base
 	      new_enduser_session_path
 	    end
 	end
-	
+
+	def routing_error
+	  render template: 'errors/error_404', status: 404, layout: 'application', content_type: 'text/html'
+	end
+
+	def after_sign_in_path_for(resource)
+      if current_enduser
+        flash[:notice] = ""
+        items_path  #　指定したいパスに変更
+      else
+        flash[:notice] = ""
+        items_path  #　指定したいパスに変更
+      end
+    end
 
 	def configure_permitted_parameters
 	  added_attrs = [ :first_name, :last_name, :first_name_kana, :last_name_kana, :postcode, :prefecture, :address, :phone_number, :email, :encrypted_password,:cart_id]

@@ -12,7 +12,6 @@ class Item < ApplicationRecord
     attachment :item_profile
     accepts_nested_attributes_for :discs, allow_destroy: true
 
-    validates :item_profile_id, presence:true
     validates :item_name, presence:true
     validates :shipdate, presence:true
     validates :price, presence:true

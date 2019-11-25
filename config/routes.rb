@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   root 'publics/items#index'
+  get "/admins/genres", :to => "application#routing_error"
+  get "/admins/labels", :to => "application#routing_error"
+  get "/admins/artists", :to => "application#routing_error"
+  get "/admins/freights/:id", :to => "application#routing_error"
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
@@ -31,7 +35,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:create, :update, :destroy]
   end
    scope module: :publics do
-    resources :endusers, only: [:show, :destroy, :edit, :update]
+    resources :endusers, only: [:index, :show, :destroy, :edit, :update]
   end
    scope module: :publics do
     resources :items, only: [:index, :show] do
@@ -75,6 +79,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :artists, only: [:create, :new, :index]
   end
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

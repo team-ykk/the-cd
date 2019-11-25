@@ -12,25 +12,63 @@ class Publics::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
    def create
-     super
-     @cart = Cart.new
-     @cart.enduser_id = current_enduser.id
-     @cart.save
+    build_resource(sign_up_params)
 
-     @enduser = current_enduser
-     @enduser.cart_id = @cart.id
-     @enduser.update(enduser_params)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
 
-     @address = Address.new
-     @address.enduser_id = current_enduser.id
-     @address.postcode =current_enduser.postcode
-     @address.name = current_enduser.first_name, current_enduser.last_name
-     @address.prefecture_id = current_enduser.prefecture
-     @address.address = current_enduser.address
-     @address.phone_number = current_enduser.phone_number
-     @address.created_at = current_enduser.created_at
-     @address.updated_at = current_enduser.updated_at
-     @address.save
+        @cart = Cart.new
+        @cart.enduser_id = resource.id
+        @cart.save
+        @enduser = current_enduser
+        @enduser.cart_id = @cart.id
+        @enduser.update(enduser_params)
+
+        @address = Address.new
+        @address.enduser_id = current_enduser.id
+        @address.postcode =current_enduser.postcode
+        @address.name = current_enduser.first_name, current_enduser.last_name
+        @address.prefecture_id = current_enduser.prefecture
+        @address.address = current_enduser.address
+        @address.phone_number = current_enduser.phone_number
+        @address.created_at = current_enduser.created_at
+        @address.updated_at = current_enduser.updated_at
+        @address.save
+
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+
+     #@cart = Cart.new
+     #@cart.enduser_id = current_enduser.id
+     #@cart.save
+
+     #@enduser = current_enduser
+     #@enduser.cart_id = @cart.id
+     #@enduser.update(enduser_params)
+
+     #@address = Address.new
+     #@address.enduser_id = current_enduser.id
+     #@address.postcode =current_enduser.postcode
+     #@address.name = current_enduser.first_name, current_enduser.last_name
+     #@address.prefecture_id = current_enduser.prefecture
+     #@address.address = current_enduser.address
+     #@address.phone_number = current_enduser.phone_number
+     #@address.created_at = current_enduser.created_at
+     #@address.updated_at = current_enduser.updated_at
+     #@address.save
 
 
 

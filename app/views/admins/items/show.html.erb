@@ -43,7 +43,40 @@
 			<% end %>
 		</div>
 	</div>
-	<div class="row-md-10">
-		<!-- <p>レビューの一覧</p> -->
+	<div class="row row-md-10">
+		<div class="col col-lg-1"></div>
+		<div class="col col-md-10">
+			<div class="review">
+			  <% if enduser_signed_in? %>
+			  	<span class="span-notice"><%= notice %></span>
+				<%= form_for [@item, @review] do |r| %>
+					<h3 class="review-h3"><i class="far fa-comment-dots">  </i> レビュー投稿欄</h3>
+					<div class="review-area"><%= r.text_area :review_content  %></div>
+				<%= r.submit'投稿' %>
+				<% end %>
+			  <% else %>
+			  <% end %>
+				<div class="review-content">
+					<h3 class="review-h3">レビュー 一覧</h3>
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="col-md-2"><p>ユーザー名</p></th>
+								<th><p>レビュー内容</p></th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @reviews.each do |f| %>
+							<tr>
+								<td><%= f.enduser.first_name %><%= f.enduser.last_name %></td>
+								<td><%= f.review_content %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+					<%= paginate @reviews, class: "paginate" %>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

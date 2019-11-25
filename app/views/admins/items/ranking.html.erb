@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>ランキング（いいね順）</h2>
+  <p>（＊上位５０件まで表示）</p>
+  <div class="row">
+    <div class="col col-lg-2"></div>
+    <div class="col col-lg-8">
+      <table class="table table-striped">
+        <span>いいね順・<%= link_to "発売日順" , items_path %></span>
+          <thead>
+            <tr>
+              <th>発売日</th>
+              <th>商品名・アーティスト名</th>
+              <th></th>
+              <th>価格（税込）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @items.each do |item| %>
+              <td>
+                <%= attachment_image_tag item, :item_profile, :fill, 120, 120, format: 'jpeg' %></br>
+                <p class="p1"><%= item.shipdate %></p>
+              </td>
+              <td>
+                <p class="p2"><%= link_to item_path(item.id) do %><%= item.item_name %><% end %></p></br>
+                <p class="p3"><%= item.artist.artist_name  %></p>
+              </td>
+              <td>
+                <p class="p8"><i class="fas fa-heart"></i> いいね <%= item.favorites.count %>　</br>
+                <i class="far fa-comment-dots"></i>レビュー <%= item.reviews.count %></p>
+              </td>
+              <td>
+                <p class="p4"><%= (item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+       </table>
+     </div>
+   </div>
+ </div>
+

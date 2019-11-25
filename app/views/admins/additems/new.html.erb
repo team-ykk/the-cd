@@ -43,7 +43,7 @@
                 <% end %>
 			<div>
 				<label>登録ID　</label>
-				<%= f.number_field :item_id, min: 1, class:"field" %>
+				<%= f.collection_select :item_id, Item.all, :id, :id, :prompt => "選択してください", class:"field" %>
 			</div>
 			<div>
 				<label>追加枚数 </label>
