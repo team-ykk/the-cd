@@ -13,7 +13,8 @@ class Publics::ReviewsController < ApplicationController
 		if @review.save
 			redirect_to item_path(@item.id)
 	    else
-			redirect_to item_path(@item.id),notice: "空白で投稿はできません"
+	    	flash[:notblank] = '空白で投稿はできません'
+			redirect_to item_path(@item.id)
 	    end
 	end
 
