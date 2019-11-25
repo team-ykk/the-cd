@@ -9,55 +9,52 @@
 				<%= attachment_image_tag @item, :item_profile, :fill,260, 260, format: 'jpeg' %>
 			</div>
 			<div class="item-top">
-			 <% if enduser_signed_in? %>
-				<%= form_for(@cart_item) do |l| %>
-				<%= l.hidden_field :cart_id, value: @cart.id %>
-				<%= l.hidden_field :item_id, value: @item.id %>
-				<%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
-				   <% if CartItem.where(item_id: @item.id, cart_id: current_enduser.cart.id).exists? %>
-				   <p class="exist">＊カートに</br>入っています</p>
-				   <% else %>
-				   <p class="p9"><i class="fas fa-cart-arrow-down "></i>   <%= l.submit "カートに入れる",class: 'btn btn-primary ' %></p>
-				   <% end %>
-			 <% else %>
-			    <% end %>
-			 <% end %>
-
-			 <% if enduser_signed_in? %>
-			 <% else %>
-			 	<div class="link"><i class="fas fa-cart-arrow-down"></i>    <%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %></div>
-			 <% end %>
-
-
-            <% if enduser_signed_in? %>
-			<% if @item.favorited_by?(current_enduser) %>
-				<p class="p9"><%= link_to item_favorites_path(@item), method: :delete do %>
-				<i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-				<%= @item.favorites.count %> いいね</p>
+				<% if @item.status == "販売中" %>
+					<% if enduser_signed_in? %>
+						 	<%= form_for(@cart_item) do |l| %>
+						 	<%= l.hidden_field :cart_id, value: @cart.id %>
+							<%= l.hidden_field :item_id, value: @item.id %>
+						 	<%= l.hidden_field :subtotal, value: (@item.price * @tax.tax_rate ) %>
+							     <% if CartItem.where(item_id: @item.id, cart_id: current_enduser.cart.id).exists? %>
+							     <p class="exist">＊カートに</br>入っています</p>
+							     <% else %>
+							     <p class="p9"><i class="fas fa-cart-arrow-down "></i>   <%= l.submit "カートに入れる",class: 'btn btn-primary ' %></p>
+						         <% end %>
+						    <% end %><!-- form_forのEND -->
+					<% else %>
+					 	    <div class="link"><i class="fas fa-cart-arrow-down"></i>    <%= link_to "カートに入れる", new_enduser_session_path , class: 'btn btn-primary cart_botton' %>
+					 	    </div>
+					<% end %>
+			    <% else %>
 				<% end %>
-			<% else %>
-				<p class="p9"><%= link_to item_favorites_path(@item), method: :post do %>
-				<i class="fa fa-heart-o" aria-hidden="true"></i>
-				<%= @item.favorites.count %> いいね</p>
-				<% end %>
-			<% end %>
-			<% else %>
-			<p class="p10"><i class="fas fa-heart"></i>  いいね <%= @item.favorites.count %></p>
-            <% end %>
-                <p class="p10"><i class="far fa-comment-dots"></i> レビュー数 <%= @item.reviews.count %></p>
-            </div>
-            <div class="item-bottom">
+
+	            <% if enduser_signed_in? %>
+				　　　<% if @item.favorited_by?(current_enduser) %>
+					     <p class="p9"><%= link_to item_favorites_path(@item), method: :delete do %>
+						 <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+					     <%= @item.favorites.count %> いいね</p><% end %>
+		             <% else %>
+			             <p class="p9"><%= link_to item_favorites_path(@item), method: :post do %>
+						 <i class="fa fa-heart-o" aria-hidden="true"></i>
+						 <%= @item.favorites.count %> いいね</p><% end %>
+		             <% end %>
+				<% else %>
+				    <p class="p10"><i class="fas fa-heart"></i>  いいね <%= @item.favorites.count %></p>
+	            <% end %>
+	                <p class="p10"><i class="far fa-comment-dots"></i> レビュー数 <%= @item.reviews.count %></p>
+	        </div>
+	        <div class="item-bottom">
             	<p>商品名：<%= @item.item_name %></p>
 				<p>アーティスト名：<%= @item.artist.artist_name %></p>
 				<p>レーベル名：<%= @item.label.label_name %></p>
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
-				<% if @item.status == "販売中" %>
-				<div class="sell_now">販売中</div>
-				<% else %>
-				<div class="sell_not_now">販売停止中</div>
-				<% end %>
+					<% if @item.status == "販売中" %>
+					   <div class="sell_now">販売中</div>
+					<% else %>
+					   <div class="sell_not_now">販売停止中</div>
+					<% end %>
 			</div>
 		</div>
 		<div class="col col-md-5">
@@ -74,8 +71,8 @@
 		</div>
 		<div class="col col-md-10">
 			<div class="review">
-			  <% if enduser_signed_in? %>
-			  <span class="span-notice"><%= notice %></span>
+			 <% if enduser_signed_in? %>
+				  <span class="span-notice"><%= flash[:notblank] %></span>
 				<%= form_for [@item, @review] do |r| %>
 				<h3 class="review-h3"><i class="far fa-comment-dots">  </i> レビュー投稿欄</h3>
 				<div class="review-area"><%= r.text_area :review_content  %></div>
@@ -106,14 +103,4 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
+</div>

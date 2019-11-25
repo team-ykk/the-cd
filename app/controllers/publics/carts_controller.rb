@@ -1,5 +1,5 @@
 class Publics::CartsController < Publics::ApplicationController
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:show]
 
   def show
   	@cart = current_enduser.cart
