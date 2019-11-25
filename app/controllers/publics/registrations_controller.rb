@@ -22,19 +22,19 @@ class Publics::RegistrationsController < Devise::RegistrationsController
         @cart = Cart.new
         @cart.enduser_id = resource.id
         @cart.save
-        @enduser = current_enduser
+        @enduser = resource
         @enduser.cart_id = @cart.id
         @enduser.update(enduser_params)
 
         @address = Address.new
-        @address.enduser_id = current_enduser.id
-        @address.postcode =current_enduser.postcode
-        @address.name = current_enduser.first_name, current_enduser.last_name
-        @address.prefecture_id = current_enduser.prefecture
-        @address.address = current_enduser.address
-        @address.phone_number = current_enduser.phone_number
-        @address.created_at = current_enduser.created_at
-        @address.updated_at = current_enduser.updated_at
+        @address.enduser_id =@enduser.id
+        @address.postcode =@enduser.postcode
+        @address.name = @enduser.first_name, @enduser.last_name
+        @address.prefecture_id = @enduser.prefecture
+        @address.address = @enduser.address
+        @address.phone_number = @enduser.phone_number
+        @address.created_at = @enduser.created_at
+        @address.updated_at = @enduser.updated_at
         @address.save
 
         set_flash_message! :notice, :signed_up
