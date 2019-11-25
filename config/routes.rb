@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     get 'contacts/complete'
   end
   namespace :admins do
-    resources :orders, only: [:index]
+    resources :orders, only: [:index, :update, :edit]
   end
   namespace :admins do
     resources :endusers, only: [:index, :show, :destroy, :edit, :update]

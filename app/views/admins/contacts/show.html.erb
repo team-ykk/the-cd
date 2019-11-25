@@ -7,7 +7,7 @@
       <div class="mozi">
         <p>お問合せ内容</p>
       </div>
-      <p>
+      <p class="word-break">
         <%= @contact.contact_content %>
       </p>
     </div>
@@ -41,9 +41,11 @@
 textarea {
 width: 600px;
 height: 10em;
-
-p {
-　　　overflow-wrap: break-word;
-　　　word-wrap: break-word;
+}
+.word-break {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  overflow-wrap: break-word;
 }
 </style>
