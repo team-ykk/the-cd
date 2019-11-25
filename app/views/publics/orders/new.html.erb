@@ -1,6 +1,9 @@
 
 <h1>購入画面</h1>
 
+<% if flash[:notbuy] %>
+  <p class="p4"><%= flash[:notbuy] %></p>
+<% end %>
 
 <% if current_enduser.cart.cart_items.exists? %>
 	<h4>お届け先</h4>
