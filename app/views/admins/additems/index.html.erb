@@ -1,6 +1,6 @@
 <div class="container">
+  <h2>入荷履歴一覧</h2>
   <div class="row">
-    <h2>入荷履歴一覧</h2>
     <div class="col col-lg-2">
     </div>
     <div class="col col-lg-8">
@@ -9,10 +9,6 @@
           <thead>
             <tr>
               <th>
-                <% if additem.alladd.deleted_at.blank? %>
-                <% else %>
-                  削除済み<br>
-                <% end %>
                 <%= additem.created_at.strftime("%Y-%m-%d %H:%M") %></th>
               <th></th>
               <th></th>
@@ -21,6 +17,10 @@
           <tbody>
               <tr>
                 <td>
+                  <% if additem.alladd.deleted_at.blank? %>
+                  <% else %>
+                    削除済み<br>
+                  <% end %>
                 	<%= attachment_image_tag additem.alladd, :item_profile, :fill, 120, 120, format: 'jpeg' %>
                 </td>
                 <td>
@@ -47,9 +47,9 @@
                 </td>
               </tr>
               <% end %>
-              <%= paginate @additems, class: "paginate" %>
           </tbody>
        </table>
+       <%= paginate @additems, class: "paginate" %>
      </div>
    </div>
  </div>

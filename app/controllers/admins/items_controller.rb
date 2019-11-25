@@ -1,11 +1,11 @@
 class Admins::ItemsController < Admins::ApplicationController
   def index
-    @items = Item.search(params[:search]).order("shipdate DESC").page(params[:page])
+    @items = Item.search_admin(params[:search]).order("shipdate DESC").page(params[:page])
     @tax = Tax.find(1)
   end
 
   def ranking
-    @items = Item.find(Favorite.group(:item_id).order(Arel.sql("count(item_id) desc").limit(50).pluck(:item_id)))
+    @items = Item.find(Favorite.group(:item_id).order("count(item_id) desc").limit(50).pluck(:item_id))
     @tax = Tax.find(1)
   end
 
@@ -59,9 +59,6 @@ class Admins::ItemsController < Admins::ApplicationController
     @item = Item.find(params[:id])
     @item.destroy
     redirect_to admins_items_path
-  end
-
-  def ranking
   end
   private
   def item_params
