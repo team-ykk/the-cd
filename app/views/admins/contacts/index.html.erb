@@ -1,20 +1,16 @@
 <div class="container">
 	<div class="row">
+		<h2>お問合せ一覧</h2>
 		<div class="col">
-			<h3>お問合せ一覧</h3>
 			<div class="contact">
-				<table class="table table-bordere">
+				<table>
 					<thead>
 					    <tr>
-					      <th colspan="1"></th>
-					      <th>受信履歴</th>
-					      <th class="col-md-10">
-					      	ユーザー名
-					      </th>
-					      <th>
-					    	お問合せ内容
-					      </th>
-					      <th colspan="4"></th>
+					      <th class="col-span"></th>
+					      <th class="received_history">受信履歴</th>
+					      <th class="user_name">ユーザー名</th>
+					      <th class="word-break">お問合せ内容</th>
+					      <th class="col-span"></th>
 					    </tr>
 					</thead>
 					<tbody>
@@ -30,10 +26,15 @@
 			                <%=f.alladd.first_name %><%= f.alladd.last_name %>
 			              </td>
 			              <td>
-			              	<%= f.contact_content %>
+			              	<p class="word-break">
+			              		<%= f.contact_content %>
+			              	</p>
 			              </td>
 			              <td>
-			              	<%= link_to'返信する',admins_contact_path(f.id) %>
+			              	<% if f.alladd.deleted_at %>
+				                <% else %>
+				                <%= link_to'返信する',admins_contact_path(f.id) %>
+				            <% end %>
 			              </td>
 			            </tr>
 			          <% end %>
@@ -46,9 +47,40 @@
 
 
 <style>
-	.contact{
-		margin-top: 40px;
-		margin-left: 100px;
-		margin-right: 100px;
-	}
+.contact{
+	margin-top: 40px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.word-break {
+  display: block;
+  width: 200px;
+  overflow-wrap: break-word;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table,th,td {
+  border: 1px solid #bbb;
+}
+
+.word-break {
+	width: 100%;
+}
+
+.user_name{
+	width: 100px;
+}
+
+.received_history{
+	width: 150px;
+}
+
+.col-span {
+  width: 60px;
+}
 </style>

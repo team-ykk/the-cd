@@ -29,7 +29,7 @@ class Publics::RegistrationsController < Devise::RegistrationsController
         @address = Address.new
         @address.enduser_id =@enduser.id
         @address.postcode =@enduser.postcode
-        @address.name = @enduser.first_name, @enduser.last_name
+        @address.name = #{@enduser.first_name + @enduser.last_name}
         @address.prefecture_id = @enduser.prefecture
         @address.address = @enduser.address
         @address.phone_number = @enduser.phone_number

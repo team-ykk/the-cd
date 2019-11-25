@@ -1,2 +1,64 @@
-<h1>購入履歴一覧</h1>
-<p>Find me in app/views/publics/orders/index.html.erb</p>
+<div class="container">
+  <h2>購入履歴一覧</h2>
+  <div class="row">
+    <div class="col">
+      <div class="border-top">
+      </div>
+      <table class="table table-striped">
+        <thead>
+        </thead>
+        <tbody>
+          <% @orders.each do |f| %>
+            <% f.histories.each do |a| %>
+              <div class="item-history">
+                <%= attachment_image_tag a, :item_profile, :fill, 100, 100, format: 'jpeg' %></br>
+                  <div class="item-information">
+                    <p class="p7"><%= a.item_name %></p>
+                    <p class="p7"><%= a.artist_name %></p>
+                    <span>枚数</span>
+                    <span><%= a.quantity %></span>
+                    <p class="p4"><%= a.subtotal.round.to_s(:delimited, delimiter: ',') %>円(税込)</p>
+                  </div>
+              </div>
+            <% end %>
+            <div class="Address-information">
+              <p>送付先</p>
+              <p><%= f.address.prefecture_id %><%= f.address.address %></p>
+              <p><%= f.status %></p>
+              <p>価格総計</p>
+              <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+              <p>(*送料は別途500円)</p>
+            </div>
+          <% end %>
+          <div class="border-down">
+          </div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  .Address-information{
+    width: 200px;
+    position: relative; bottom: 300px; left:800px;
+  }
+  
+  .item-history{
+    width: 300px;
+    position: relative; top: 40px; left: 70px;
+  }
+  .item-information{
+     position: relative; bottom: 100px; left: 200px;
+  }
+  .border-top{
+    width: 100%;
+    border: 1px solid #bbb;
+  }
+  .border-down{
+    width: 100%;
+    border: 1px solid #bbb;
+  }
+
+}
+</style>

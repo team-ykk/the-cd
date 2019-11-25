@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<%= form_for @order, url: admins_order_path do |f| %>
+				<label class="label_name label_height">配送状況</label>
+			<h2 class = "field">
+				<%= f.label :status, "受付中" %>
+				<%= f.radio_button :status, :受付中 %>
+				<%= f.label :status, "商品準備中" %>
+				<%= f.radio_button :status, :商品準備中 %>
+				<%= f.label :status, "出荷済" %>
+				<%= f.radio_button :status, :出荷済 %>
+			</h2>
+			<div class="haisou-bottan">
+				<%= f.submit'配送状況を変更する' %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<style>
+	.haisou-bottan{
+		margin-left: 500px;
+	}
