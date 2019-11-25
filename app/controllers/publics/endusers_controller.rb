@@ -1,4 +1,4 @@
-class Publics::EndusersController < ApplicationController
+class Publics::EndusersController < Publics::ApplicationController
   def show
   	  @enduser = Enduser.find(params[:id])
       if @enduser.id != current_enduser.id

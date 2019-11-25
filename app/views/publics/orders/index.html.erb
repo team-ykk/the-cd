@@ -2,13 +2,15 @@
   <h2>購入履歴一覧</h2>
   <div class="row">
     <div class="col">
-      <div class="border-top">
-      </div>
       <table class="table table-striped">
         <thead>
         </thead>
         <tbody>
           <% @orders.each do |f| %>
+          <div class="border-top">
+            <span>購入日</span>
+            <span><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+          </div>
             <% f.histories.each do |a| %>
               <div class="item-history">
                 <%= attachment_image_tag a, :item_profile, :fill, 100, 100, format: 'jpeg' %></br>
@@ -27,13 +29,15 @@
               <p><%= f.status %></p>
               <p>価格総計</p>
               <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
-              <p>(*送料は別途500円)</p>
+            </div>
+            <div class="border-down">
             </div>
           <% end %>
           <div class="border-down">
           </div>
         </tbody>
       </table>
+      <%= paginate @orders, class: "paginate" %>
     </div>
   </div>
 </div>

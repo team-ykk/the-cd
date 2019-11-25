@@ -14,7 +14,7 @@
 					    </tr>
 					</thead>
 					<tbody>
-			          <% @contact.each do |f| %>
+			          <% @contacts.each do |f| %>
 			            <tr>
 			              <td>
 			              	
@@ -40,6 +40,7 @@
 			          <% end %>
 			        </tbody>
 			    </table>
+			    <%= paginate @contacts, class: "paginate" %>
   			</div>
        </div>
 	</div>
