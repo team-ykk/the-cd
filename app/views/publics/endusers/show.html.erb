@@ -81,35 +81,22 @@
 		                	<%= f.item.favorites.count %> いいね　</br> <%= f.item.reviews.count %>レビュー数
 		                </td>
 		                <td>
-		                	<p><%= f.item.item_name %></p></br><p class="p3"><%= f.item.artist.artist_name  %></p>
+		                	<p class="p2"><%= link_to item_path(f.item.id) do %>
+		                		<%= f.item.item_name %></p></br>
+		                	<% end %>
+		                	<p class="p3"><%= f.item.artist.artist_name  %></p>
 		                </td>
 		                <td>
 		                	<p class="p4"><%= (f.item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
 		                </td>
 		              </tr>
 		              <% end %>
-		             
+		             <%= paginate @favorites, class: "paginate" %>
 		          </tbody>
             </table>
 		</div>
 	</div>
 </div>
 
-<style>
-    .taikai{
-        margin-top: 150px;
-    }
-    .iine{
-    	margin-top: 100px;
-    	margin-left: 100px;
-    }
-    .border{
-    	margin-top: 20px;
-    	margin-left: 50px;
-    }
-    .kounyuu{
-    	margin-top: 20px;
-    }
-</style>
 
 
