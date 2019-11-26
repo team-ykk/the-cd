@@ -1,3 +1,46 @@
 // Place all the styles related to the admins/contacts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.contact{
+	margin-top: 40px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.word-break {
+  display: block;
+  width: 200px;
+  overflow-wrap: break-word;
+}
+
+
+
+.word-break {
+	width: 100%;
+}
+
+.user_name{
+	width: 100px;
+}
+
+.received_history{
+	width: 150px;
+}
+
+.col-span {
+  width: 60px;
+}
+
+.hennshinn{
+  height: 100px;
+  margin-left: 800px;
+}
+.mozi{
+  margin-right: 600px;
+}
+
+textarea {
+width: 600px;
+height: 10em;
+}

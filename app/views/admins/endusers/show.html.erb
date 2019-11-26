@@ -50,7 +50,6 @@
                     </tbody>
                 </table>
                 <%= link_to '登録ユーザー情報編集画面へ', edit_admins_enduser_path, class:"btn btn-primary" %>
-                
             </div>
             <div class="taikai">
                 <%= link_to "退会させる", admins_enduser_path, class:"btn btn-danger", method: :delete, "data-confirm" => "本当に退会しますか?" %>
@@ -93,16 +92,3 @@
     </div>
 </div>
 
-<style>
-    .taikai{
-        margin-top: 150px;
-    }
-    .iine{
-        margin-top: 100px;
-        margin-left: 100px;
-    }
-    .border{
-        margin-top: 20px;
-        margin-left: 50px;
-    }
-</style>
