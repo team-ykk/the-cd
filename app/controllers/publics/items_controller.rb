@@ -1,7 +1,6 @@
 class Publics::ItemsController < ApplicationController
 
   def index
-   @item = Item.new
    @items = Item.search(params[:search])
    @items = @items.page(params[:page]).order(shipdate: "DESC")
    @tax = Tax.find(1)
@@ -22,7 +21,6 @@ class Publics::ItemsController < ApplicationController
   end
 
   def ranking
-     @item = Item.new
      @tax = Tax.find(1)
      @items = Item.find(Favorite.group(:item_id).order('count(item_id) desc').limit(50).pluck(:item_id))
   end
