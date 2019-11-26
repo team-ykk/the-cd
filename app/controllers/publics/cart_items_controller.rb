@@ -1,4 +1,4 @@
-class Publics::CartItemsController < ApplicationController
+class Publics::CartItemsController < Publics::ApplicationController
 
     def create
     	@cart_item = CartItem.new(cart_item_params)

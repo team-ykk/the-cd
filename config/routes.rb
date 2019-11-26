@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/admins/artists", :to => "application#routing_error"
   get "/admins/freights/:id", :to => "application#routing_error"
   get "/addresses", :to => "application#routing_error"
+  get "/endusers", :to => "application#routing_error"
 
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
