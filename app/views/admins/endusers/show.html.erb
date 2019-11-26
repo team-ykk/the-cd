@@ -63,22 +63,25 @@
                   <thead>
                     <tr>
                       <th>発売日</th>
-                      <th><!-- いいね　と　レビュー数 --></th>
-                      <th>商品名・アーティスト名</th>
-                      <th>価格（税込）</th>
+                      <th class="col-md-3">商品名・アーティスト名</th>
+                      <th class="col-md-3"></th>
+                      <th class="col-md-3">価格（税込）</th>
                     </tr>
                   </thead>
                   <tbody>
                       <tr>
                         <% @favorites.each do |f| %>
                         <td>
-                            <%= attachment_image_tag f.item, :item_profile, :fill, 60, 60, format: 'jpeg' %></br><p class="p1"><%= f.item.shipdate %></p>
+                            <%= attachment_image_tag f.item, :item_profile, :fill, 80, 80, format: 'jpeg' %></br>
+                            <p class="p1"><%= f.item.shipdate %></p>
+                       </td>
+                        <td>
+                            <p class="p2"><%= f.item.item_name %></p>
+                            <p class="p3"><%= f.item.artist.artist_name  %></p>
                         </td>
                         <td>
-                            <%= f.item.favorites.count %> いいね　</br> <%= f.item.reviews.count %>レビュー数
-                        </td>
-                        <td>
-                            <p><%= f.item.item_name %></p></br><p class="p3"><%= f.item.artist.artist_name  %></p>
+                            <p class="p8"><i class="fas fa-heart"></i> いいね <%= f.item.favorites.count %>　</br>
+                                <i class="far fa-comment-dots"></i>レビュー <%= f.item.reviews.count %></p>
                         </td>
                         <td>
                             <p class="p4"><%= (f.item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
