@@ -2,10 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.order-bottom span{
+	color:red;
+}
+
+.order-bottom{
+	text-align :right;
+}
+
+.order{
+	text-align :center;
+}
 
 .Address-information{
     width: 200px;
     position: relative; bottom: 260px; left:800px;
+
 }
 .item-history{
   width: 300px;
@@ -22,3 +34,4 @@
   width: 100%;
   border: 1px solid #bbb;
 }
+
