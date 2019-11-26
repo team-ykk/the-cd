@@ -37,9 +37,6 @@
 					<li><%= link_to "商品の削除", admins_item_path(@item), method: :delete ,class:"btn btn-default btn-lg" %></li>
 				  </ul>
               <% else %>
-	                <ul class="item_nav">
-	                	<li><%= link_to "商品情報の復元", admins_item_path(@item), method: :patch, class:"btn btn-default btn-lg" %></li>
-	                </ul>
               <% end %>
 			</div>
 	    </div>
@@ -79,7 +76,7 @@
 							<% @item.reviews.each do |review| %>
 							<tr>
 								<td><%= review.enduser.first_name %><%= review.enduser.last_name %></td>
-								<td><%= review.review_content %></td>
+								<td class ="review"><%= review.review_content %></td>
 								<td><%= link_to "削除", admins_item_review_path(@item.id, review.id), method: :delete, data: { confirm: '削除しますか？' }, class:"btn btn-default btn-xs"  %></td>
 							</tr>
 							<% end %>

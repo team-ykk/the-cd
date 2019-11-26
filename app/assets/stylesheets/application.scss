@@ -36,7 +36,6 @@ header {
 .header-top {
 	height: 100px;
 	width: 100%;
-	// vertical-align: middle; 不要かも
 	position: relative;
 }
 
@@ -53,7 +52,7 @@ header {
 	display: inline-block;
 	font-weight: bold;
 	font-size: 24px;
-	padding: 10px;
+	padding: 10px 20px;
 	background-color: #d3d3d3;
 	box-shadow: 0px 0px 0px 5px #d3d3d3;
 	border: dashed 2px white;
@@ -78,8 +77,14 @@ header {
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
 }
 
-.nav-right {
+.nav-right ul {
 	float: right;
+}
+
+.nav-right span {
+	float: right;
+	position: relative;
+	padding-right: 45px;
 }
 
 li {
@@ -171,6 +176,10 @@ html,body {
 
 .row {
 	border: solid 1px black;
+}
+
+.review {
+	word-break:break-all
 }
 
 

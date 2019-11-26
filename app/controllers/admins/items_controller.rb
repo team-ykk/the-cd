@@ -22,12 +22,6 @@ class Admins::ItemsController < Admins::ApplicationController
     @reviews = @reviews.page(params[:page]).reverse_order
   end
 
-  def restore
-    @item = Item.with_deleted.find(params[:id])
-    @item.restore
-    redirect_to admins_item_path
-  end
-
   def edit
     @item = Item.find(params[:id])
   end
@@ -50,8 +44,9 @@ class Admins::ItemsController < Admins::ApplicationController
         render :edit
       end
     else
-      @item.restore
-      redirect_to admins_item_path(@item)
+      # 商品復元機能
+      # @item.restore
+      # redirect_to admins_item_path(@item)
     end
   end
 
