@@ -1,48 +1,70 @@
-
-<h1>購入画面</h1>
-
-<% if flash[:notbuy] %>
-  <p class="p4"><%= flash[:notbuy] %></p>
-<% end %>
-
-<% if current_enduser.cart.cart_items.exists? %>
-	<h4>お届け先</h4>
-	
-		
-	<%= form_for (@order) do |f| %>
-		<table border="1">
-			<tr>
-				<th></th>
-				<th>郵便番号</th>
-				<th>都道府県</th>
-				<th>市区町村</th>
-			</tr>
-			<% current_enduser.addresses.each do |a| %>
-			<tr>
-				<td><%= f.radio_button :address_id, a.id %></td>
-				<td><%= a.postcode %></td>
-				<td><%= @tests[a.prefecture_id] %></td>
-				<td><%= a.address %></td>
-			</tr>
+<div class="container">
+	<h1>購入画面</h1>
+	<div class="row">
+	    <div class="col col-lg-2">
+	    </div>
+	    <div class="col col-lg-8">
+			<% if flash[:notbuy] %>
+			  <p class="p4"><%= flash[:notbuy] %></p>
 			<% end %>
-		</table>
+
+			<% if current_enduser.cart.cart_items.exists? %>
+				<h4>お届け先</h4>
+			
+				
+				<%= form_for (@order) do |f| %>
+					<table class="table table-striped",border="1">
+						<tr>
+							<th></th>
+							<th>宛名</th>
+							<th>郵便番号</th>
+							<th>都道府県</th>
+							<th>市区町村</th>
+						</tr>
+						<% current_enduser.addresses.each do |a| %>
+						<tr>
+							<td><%= f.radio_button :address_id, a.id %></td>
+							<td><%= a.name %></td>
+							<td><%= a.postcode %></td>
+							<td><%= @tests[a.prefecture_id] %></td>
+							<td><%= a.address %></td>
+						</tr>
+						<% end %>
+					</table>
+
+					<%= link_to '新しい住所を追加する', new_address_path, class: 'btn btn-primary cart_botton' %>
+					<div class="order-bottom">
+						<h4>支払い方法</h4>
+							<label>
+								<%= f.radio_button :payment, :aaa %>銀行振込
+								<%= f.radio_button :payment, :iii %>クレジットカード
+								<%= f.radio_button :payment, :uuu %>代引き
+							</label>
 
 
-		<%= link_to '新しい住所を追加する', new_address_path %>
+						<h4>送料　全国一律¥<%= @freight.postage %>-</h4>
+						<h4>合計金額<span><%= ((@cart_total_price) + (@freight.postage)).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></h4>
+						<%= f.submit "購入確定", class:"btn btn-primary"  %>
+					</div>
+				<% end %>
+			<% else %>
+				<p>カートの中身が空です</p>
+			<% end %>
+		</div>
+	</div>
+</div>
 
-		<h4>支払い方法</h4>
-			<label>
-				<%= f.radio_button :payment, :aaa %>銀行振込
-				<%= f.radio_button :payment, :iii %>クレジットカード
-				<%= f.radio_button :payment, :uuu %>代引き
-			</label>
 
 
-		<h4>送料　全国一律¥500-</h4>
-		<h3 class="total_price">合計金額<%= ((@cart_total_price) + (@freight.postage)).round.to_s(:delimited, delimiter: ',')%>円(税込)</h3>
-		<%= f.submit "購入確定" %>
-	<% end %>
-<% else %>
-	<p>カートの中身が空です</p>
-<% end %>
+.order-bottom span{
+	color:red;
+}
+
+.order-bottom{
+	text-align :right;
+}
+
+.order{
+	text-align :center;
+}
 
