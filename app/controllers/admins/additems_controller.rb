@@ -9,14 +9,13 @@ class Admins::AdditemsController < Admins::ApplicationController
   end
 
   def create
-    @items = Item.search(params[:search])
+    @items = Item.search(params[:search]).order("id").page(params[:page])
     @item = @items.page(params[:page])
   	@additem = Additem.new(additem_params)
   	if @additem.save
     	@item = Item.find(@additem.item_id)
     	@item_stock = @additem.add_item + @item.stock
     	@item.update(stock:@item_stock)
-    	# @item.save
     	redirect_to admins_additems_path
     else
       render :new
