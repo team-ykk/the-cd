@@ -21,4 +21,6 @@ class Enduser < ApplicationRecord
   validates :phone_number, presence: true
   validates :email, presence: true
   validates :encrypted_password, presence: true
+  validates :first_name, length: { maximum: 20 }
+  validates :last_name, length: { maximum: 20 }
 end
