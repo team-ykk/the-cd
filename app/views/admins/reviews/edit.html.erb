@@ -1,2 +1,16 @@
-<h1>Admins::Reviews#edit</h1>
-<p>Find me in app/views/admins/reviews/edit.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col text-center">
+			<h1>レビュー編集</h1>
+			<div class="col text-center">
+				<%= form_for [@item,@review], url:admins_item_review_path(@item,@review)  do |f| %>
+					<span><%= f.text_area :review_content %></span>
+					<div class="soushinn">
+					<%= f.submit"編集する", class:"btn btn-primary" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
