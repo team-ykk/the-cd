@@ -35,10 +35,15 @@ class Admins::ItemsController < Admins::ApplicationController
     end
   end
 
-  def update
+　 def update
+    @tax = Tax.find(1)
     @item = Item.with_deleted.find(params[:id])
     if  @item.deleted_at == nil
       if @item.update(item_params)
+        cart_items = CartItem.where(item_id: @item.id)
+          cart_items.each do |f|
+          f.update(subtotal: f.quantity * @item.price * @tax.tax_rate)
+          end
         redirect_to admins_item_path(@item)
       else
         render :edit
