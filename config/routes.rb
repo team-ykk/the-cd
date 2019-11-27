@@ -42,7 +42,7 @@ Rails.application.routes.draw do
    scope module: :publics do
     resources :items, only: [:index, :show] do
       resource :favorites, only:[:create, :destroy]
-      resource :reviews, only:[:create]
+      resources :reviews, only:[:create]
   end
     get '/ranking' => 'items#ranking'
   end
