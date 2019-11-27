@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     resources :items do
-      resources :reviews, only: [:destroy, :edit, :update, :show]
+      resources :reviews, only: [:show,:destroy, :edit, :update]
     end
     get '/ranking' => 'items#ranking'
   end
