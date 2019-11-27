@@ -1,8 +1,9 @@
 <div class="container">
+	<h2>発送状況</h2>
 	<div class="row">
-		<div class="col">
+		<div class="col-shipment-status">
 			<%= form_for @order, url: admins_order_path do |f| %>
-				<label class="label_name label_height">配送状況</label>
+				<label class="label_name label_height"></label>
 			<h2 class = "field">
 				<%= f.label :status, "受付中" %>
 				<%= f.radio_button :status, :受付中 %>
@@ -12,7 +13,7 @@
 				<%= f.radio_button :status, :出荷済 %>
 			</h2>
 			<div class="haisou-bottan">
-				<%= f.submit'配送状況を変更する' %>
+				<%= f.submit'発送状況を変更する', class:'btn btn-primary' %>
 			</div>
 			<% end %>
 		</div>

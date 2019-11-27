@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get "/admins/freights/:id", :to => "application#routing_error"
   get "/addresses", :to => "application#routing_error"
   get "/endusers", :to => "application#routing_error"
-
+  get "/admins/items/:item_id/reviews/:id", :to => "application#routing_error"
+  get "/contacts", :to => "application#routing_error"
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
   }
 
    scope module: :publics do
-    resources :contacts, only: [:create, :new]
+    resources :contacts, only: [:create, :new, :index]
     get 'contacts/complete'
   end
    scope module: :publics do
@@ -74,7 +75,7 @@ Rails.application.routes.draw do
   end
   namespace :admins do
     resources :items do
-      resources :reviews, only: [:destroy, :edit, :update]
+      resources :reviews, only: [:destroy, :edit, :update, :show]
     end
     get '/ranking' => 'items#ranking'
   end

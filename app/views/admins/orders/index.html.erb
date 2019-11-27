@@ -1,53 +1,50 @@
 <div class="container">
   <h2>受注履歴一覧</h2>
-  <div class="row">
-    <div class="col">
-      <table class="table table-striped">
-        <thead>
-        </thead>
-        <tbody>
-          <% @orders.each do |f| %>
-          <div class="border-top">
-            <span>購入者名:</span>
-            <span><%= f.alladd.first_name %><%= f.alladd.last_name %></span>
-          </div>
-            <% f.histories.each do |a| %>
-              <div class="item-history">
-                <%= attachment_image_tag a, :item_profile, :fill, 100, 100, format: 'jpeg' %></br>
-                  <div class="item-information">
-                    <p class="p7"><%= a.item_name %></p>
-                    <p class="p7"><%= a.artist_name %></p>
-                    <span>枚数</span>
-                    <span><%= a.quantity %></span>
-                    <p class="p4"><%= a.subtotal.round.to_s(:delimited, delimiter: ',') %>円(税込)</p>
-                  </div>
-              </div>
-            <% end %>
-            <div class="Address-information">
-              <p>送付先</p>
-              <p>
-                <span>名前:</span>
-                <span><%= f.address.name %></span>
-              </p>
-              <p>
-                <span>電話番号:</span>
-                <span><%= f.address.phone_number %></span>
-              </p>
-              <p>
-                <span>郵便番号:</span>
-                <span><%= f.address.postcode %></span>
-              </p>
-              <span>住所</span>
-              <p><%= @tests[f.address.prefecture_id] %><%= f.address.address %></p>
-              <P><%= f.status %></P>
-             <span><%= link_to '配送状況を変更する',edit_admins_order_path(f.id) %></span>
-              <p>価格総計</p>
-              <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
-            </div>
-          <% end %>
-        </tbody>
-      </table>
-      <%= paginate @orders, class: "paginate" %>
+    <% @orders.each do |f| %>
+    <div class="row-back">
+      <div class="col-md-6 col-left">
+        <h3>購入者名:<%= f.alladd.first_name %><%= f.alladd.last_name %></h3>
+        <% f.histories.each do |a| %>
+          <div class="item_table">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                <th></th>
+                <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= attachment_image_tag a, :item_profile, :fill, 120, 120, format: 'jpeg' %>
+                  </td>
+                  <td class="image-right">
+                    <p class="pp"><%= a.item_name %></p><br>
+                    <p class="pp"><%= a.artist_name %></p><br>
+                    枚数<%= a.quantity %><br>
+                    <%= a.subtotal.round.to_s(:delimited, delimiter: ',') %>円(税込)
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      <% end %>
     </div>
-  </div>
+      <div class="col-md-6 col-right">
+        <div class="address">
+          <p>送付先</p>
+          <p>名前:<%= f.address.name %></p>
+          <p> 電話番号:<%= f.address.phone_number %></p>
+          <p>郵便番号:<%= f.address.postcode %></p>
+          <p>住所:<%= @tests[f.address.prefecture_id] %><%= f.address.address %></p>
+          <P>商品の発送状況＝＞ <%= f.status %></P>
+          <p><%= link_to '発送状況を変更する',edit_admins_order_path(f.id), class:"btn btn-primary" %></p>
+          <p>価格総計</p>
+          <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <%= paginate @orders, class: "paginate" %>
 </div>
+
