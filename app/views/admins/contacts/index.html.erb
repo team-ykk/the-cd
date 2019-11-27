@@ -1,11 +1,11 @@
 <div class="container">
+	<h2>お問合せ一覧</h2>
 	<div class="row">
-		<h2>お問合せ一覧</h2>
 		<div class="col">
 			<div class="contact">
 				<table>
 					<thead>
-					    <tr>
+					    <tr class="tr-contact">
 					      <th class="col-span"></th>
 					      <th class="received_history">受信履歴</th>
 					      <th class="user_name">ユーザー名</th>
@@ -32,8 +32,9 @@
 			              </td>
 			              <td>
 			              	<% if f.alladd.deleted_at %>
+			              	  退会済み
 				                <% else %>
-				                <%= link_to'返信する',admins_contact_path(f.id) %>
+				                <%= link_to'返信する',admins_contact_path(f.id), class:"btn btn-primary" %>
 				            <% end %>
 			              </td>
 			            </tr>
@@ -47,7 +48,14 @@
 </div>
 
 <style>
-	table {
+table th{
+  	padding : 20px 10px;
+}
+
+table td{
+ 	 padding : 20px 10px;
+}
+table {
   table-layout: fixed;
   width: 100%;
 }

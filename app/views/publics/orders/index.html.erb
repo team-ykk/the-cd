@@ -1,43 +1,53 @@
 <div class="container">
-  <h2>購入履歴一覧</h2>
-  <div class="row">
-    <div class="col">
-      <table class="table table-striped">
-        <thead>
-        </thead>
-        <tbody>
-          <% @orders.each do |f| %>
-          <div class="border-top">
-            <span>購入日</span>
-            <span><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-          </div>
+    <h2>購入履歴一覧</h2>
+    <% @orders.each do |f| %>
+    <div class="row row-back">
+        <div class="col-md-6 col-left">
+            <h3>購入日  <%= f.created_at.strftime("%Y-%m-%d %H:%M") %></h3>
             <% f.histories.each do |a| %>
-              <div class="item-history">
-                <%= attachment_image_tag a, :item_profile, :fill, 100, 100, format: 'jpeg' %></br>
-                  <div class="item-information">
-                    <p class="p7"><%= a.item_name %></p>
-                    <p class="p7"><%= a.artist_name %></p>
-                    <span>枚数</span>
-                    <span><%= a.quantity %></span>
-                    <p class="p4"><%= a.subtotal.round.to_s(:delimited, delimiter: ',') %>円(税込)</p>
-                  </div>
+              <div class="item_table">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%= attachment_image_tag a, :item_profile, :fill, 120, 120, format: 'jpeg' %></td>
+                        <td class="image-right">
+                        <p class="pp"><%= a.item_name %></p><br>
+                        <p class="pp"><%= a.artist_name %></p><br>
+                        枚数<%= a.quantity %><br>
+                        <%= a.subtotal.round.to_s(:delimited, delimiter: ',') %>円(税込)</td>
+                      </tr>
+                    </tbody>
+                  </table>
               </div>
             <% end %>
-            <div class="Address-information">
-              <p>送付先</p>
-              <p><%= f.address.prefecture_id %><%= f.address.address %></p>
-              <p><%= f.status %></p>
-              <p>価格総計</p>
-              <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
-            </div>
-            <div class="border-down">
-            </div>
-          <% end %>
-          <div class="border-down">
           </div>
-        </tbody>
-      </table>
-      <%= paginate @orders, class: "paginate" %>
+          <div class="col-md-6 col-right">
+              <div class="address">
+                  <p>送付先</p>
+                  <p>名前:<%= f.address.name %></p>
+                  <p>住所:<%= @tests[f.address.prefecture_id] %><%= f.address.address %></p>
+                  <p>商品の発送状況＝＞　<%= f.status %></p>
+                  <p>価格総計</p>
+                  <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+              </div>
+          </div>
     </div>
-  </div>
+    <% end %>
+    <%= paginate @orders, class: "paginate" %>
 </div>
+
+
+
+
+
+
+
+
+
+

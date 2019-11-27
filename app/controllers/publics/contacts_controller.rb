@@ -7,13 +7,16 @@ class Publics::ContactsController < Publics::ApplicationController
   def create
   	  @contact = Contact.new(contact_params)
   	  @contact.enduser_id = current_enduser.id
-  	  @contact.save
-      @reply = ContactReply.new
-      @reply.contact_id = @contact.id
-      @reply.save
-      @contact.contact_reply_id = @reply.id
-      @contact.update(contact_params)
-  	  redirect_to contacts_complete_path
+  	   if @contact.save
+          @reply = ContactReply.new
+          @reply.contact_id = @contact.id
+          @reply.save
+          @contact.contact_reply_id = @reply.id
+          @contact.update(contact_params)
+          redirect_to contacts_complete_path
+        else
+          render 'new'
+      end
   end
 
   def complete

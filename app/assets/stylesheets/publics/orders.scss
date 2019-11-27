@@ -14,25 +14,32 @@
 	text-align :center;
 }
 
-.Address-information{
-    width: 200px;
-    position: relative; bottom: 260px; left:800px;
-
+.col-left{
 }
-.item-history{
-  width: 300px;
-  position: relative; top: 40px; left: 70px;
+.col-right{
+  margin :105px 0 0 0;
+  padding :0 0 0 0;
+  background-color:#b0c4de;
 }
-.item-information{
-   position: relative; bottom: 100px; left: 200px;
+.col-md-6{
+  display:inline-block;
+  float:left;
 }
-.border-top{
-  width: 100%;
-  border: 1px solid #bbb;
+.address{
+  margin-top:30px;
 }
-.border-down{
-  width: 100%;
-  border: 1px solid #bbb;
+.item_table{
+  margin-top:30px;
+  float:left;
+  width:554px;
+}
+.row-back{
+}
+.image-right{
+  width:418px;
+}
+.pp{
+  margin:0;
 }
 
 .pp4{
