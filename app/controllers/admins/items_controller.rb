@@ -35,7 +35,7 @@ class Admins::ItemsController < Admins::ApplicationController
     end
   end
 
-　 def update
+   def update
     @tax = Tax.find(1)
     @item = Item.with_deleted.find(params[:id])
     if  @item.deleted_at == nil

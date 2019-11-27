@@ -24,12 +24,16 @@
 				<p>ジャンル：<%= @item.genre.genre_name %></p>
 				<p>発売日：<%= @item.shipdate %></p>
 				<p>価格：<span><%= (@item.price * @tax.tax_rate).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></p>
-				<% if @item.status == "販売中" %>
-					<p class="sell_now">販売中</p>
-				<% else %>
-					<p class="sell_not_now">販売停止中</p>
-				<% end %>
 				<p>在庫数：<%= @item.stock %></p>
+              	<% if @item.deleted_at == nil %>
+					<% if @item.status == "販売中" %>
+						<p class="sell_now">販売中</p>
+					<% else %>
+						<p class="sell_not_now">販売停止中</p>
+					<% end %>
+				<% else %>
+					<p class="item_delete">削除済み</p>
+				<% end %>
 			  </div>
               <% if @item.deleted_at == nil %>
 				  <ul class="item_nav">
@@ -77,7 +81,8 @@
 							<tr>
 								<td><%= review.enduser.first_name %><%= review.enduser.last_name %></td>
 								<td class ="review"><%= review.review_content %></td>
-								<td><%= link_to "削除", admins_item_review_path(@item.id, review.id), method: :delete, data: { confirm: '削除しますか？' }, class:"btn btn-default btn-xs"  %></td>
+								<td><%= link_to "編集", edit_admins_item_review_path(@item.id, review.id), class:"btn btn-default btn-xs"  %>
+									<%= link_to "削除", admins_item_review_path(@item.id, review.id), method: :delete, data: { confirm: '削除しますか？' }, class:"btn btn-default btn-xs"  %></td>
 							</tr>
 							<% end %>
 						</tbody>
