@@ -33,6 +33,7 @@
                   <p>名前:<%= f.address.name %></p>
                   <p>住所:<%= @tests[f.address.prefecture_id] %><%= f.address.address %></p>
                   <p>商品の発送状況＝＞　<%= f.status %></p>
+                  <p>支払い方法：<%= f.payment %></p>
                   <p>価格総計</p>
                   <p class="pp4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
               </div>
