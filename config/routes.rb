@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/endusers", :to => "application#routing_error"
   get "/admins/items/:item_id/reviews/:id", :to => "application#routing_error"
   get "/contacts", :to => "application#routing_error"
+  get "/admins/contact_replies", :to => "application#routing_error"
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
@@ -61,7 +62,7 @@ Rails.application.routes.draw do
     resources :freights, only: [:show, :edit, :update, :index]
   end
   namespace :admins do
-    resources :contact_replies, only: [:create, :show, :update]
+    resources :contact_replies, only: [:create, :show, :update, :index]
   end
   namespace :admins do
     resources :contacts, only: [:index, :destroy, :show]

@@ -15,6 +15,7 @@ class Publics::ContactsController < Publics::ApplicationController
           @contact.update(contact_params)
           redirect_to contacts_complete_path
         else
+          flash.now[:notbuy] = "お問い合わせフォームを記入してください"
           render 'new'
       end
   end

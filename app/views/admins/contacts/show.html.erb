@@ -12,6 +12,9 @@
       </p>
     </div>
     <div class="col text-center">
+      <% if flash[:notbuy] %>
+        <p class="pp4"><%= flash[:notbuy] %></p>
+      <% end %>
       <%= form_for @reply,  url: admins_contact_reply_path(@reply) do |f| %>
         <div class="mozi">
           <p>メールアドレス</p>

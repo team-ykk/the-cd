@@ -1,9 +1,11 @@
 <div class="container">
   <h2>受注履歴一覧</h2>
     <% @orders.each do |f| %>
-    <div class="row-back">
+    <div class="row row-back">
       <div class="col-md-6 col-left">
-        <h3>購入者名:<%= f.alladd.first_name %><%= f.alladd.last_name %></h3>
+        <h3>
+          購入日: <%= f.created_at.strftime("%Y-%m-%d %H:%M") %></br>購入者名: <%= f.alladd.first_name %><%= f.alladd.last_name %>
+        </h3>
         <% f.histories.each do |a| %>
           <div class="item_table">
             <table class="table table-striped">
@@ -40,7 +42,7 @@
           <P>商品の発送状況＝＞ <%= f.status %></P>
           <p><%= link_to '発送状況を変更する',edit_admins_order_path(f.id), class:"btn btn-primary" %></p>
           <p>価格総計</p>
-          <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+          <p class="pp4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
         </div>
       </div>
     </div>
