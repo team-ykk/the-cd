@@ -3,7 +3,7 @@
     <% @orders.each do |f| %>
     <div class="row row-back">
         <div class="col-md-6 col-left">
-            <h3>購入日  <%= f.created_at.strftime("%Y-%m-%d %H:%M") %></h3>
+            <h3>購入日: <%= f.created_at.strftime("%Y-%m-%d %H:%M") %></h3>
             <% f.histories.each do |a| %>
               <div class="item_table">
                   <table class="table table-striped">
@@ -34,7 +34,7 @@
                   <p>住所:<%= @tests[f.address.prefecture_id] %><%= f.address.address %></p>
                   <p>商品の発送状況＝＞　<%= f.status %></p>
                   <p>価格総計</p>
-                  <p class="p4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
+                  <p class="pp4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
               </div>
           </div>
     </div>

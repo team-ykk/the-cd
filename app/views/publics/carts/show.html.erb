@@ -27,7 +27,7 @@
                   <%= form_for t do |f| %>
                   <label class="item-quantity">数量</label>
                   <%= f.number_field :quantity, min: 1, class:"field" %>
-                  <%= f.submit "保存", class:"btn btn-default btn-sm" %>
+                  <%= f.submit "更新", class:"btn btn-default btn-sm" %>
                   <% end %>
                   <%= link_to "カートから削除", cart_item_path(t), class: 'btn btn-default item_delete_botton' , method: :delete %>
                 </td>

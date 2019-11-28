@@ -39,7 +39,9 @@
 						 <%= @item.favorites.count %> いいね</p><% end %>
 		             <% end %>
 				<% else %>
-				    <p class="p10"><i class="fas fa-heart"></i>  いいね <%= @item.favorites.count %></p>
+				<%= link_to new_enduser_session_path do%>
+				    <p class="p10"><i class="fas fa-heart"></i>いいね <%= @item.favorites.count %></p>
+				<% end %>
 	            <% end %>
 	                <p class="p10"><i class="far fa-comment-dots"></i> レビュー数 <%= @item.reviews.count %></p>
 	        </div>

@@ -4,13 +4,8 @@
 			<h1>お問い合わせフォーム</h1>
 		</div>
 		<div class="col text-center">
-			<%= form_for @contact do |contact| %>
-				<% if @contact.errors.any? %>
-				<%= @contact.errors.count %>件のerrorが発生しました
-					<% @contact.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-					<% end %>
-				<% end %>
+			<% if flash[:notbuy] %>
+			  <p class="pp4"><%= flash[:notbuy] %></p>
 			<% end %>
 			<%= form_for (@contact) do |f| %>
 				<%= f.text_area :contact_content %>
