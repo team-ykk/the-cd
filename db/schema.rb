@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_033040) do
+ActiveRecord::Schema.define(version: 2019_11_28_071250) do
 
   create_table "additems", force: :cascade do |t|
     t.integer "add_item"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_033040) do
     t.datetime "updated_at", null: false
     t.integer "enduser_id"
     t.integer "contact_reply_id"
-    t.boolean "satatus", default: false, null: false
+    t.boolean "status", default: false, null: false
   end
 
   create_table "discs", force: :cascade do |t|

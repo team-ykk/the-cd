@@ -12,9 +12,6 @@
       </p>
     </div>
     <div class="col text-center">
-      <% if flash[:notbuy] %>
-        <p class="pp4"><%= flash[:notbuy] %></p>
-      <% end %>
       <%= form_for @reply,  url: admins_contact_reply_path(@reply) do |f| %>
         <div class="mozi">
           <p>メールアドレス</p>
@@ -23,6 +20,9 @@
         <div class="mozi">
           <p>返信入力フォーム</p>
         </div>
+        <% if flash[:notbuy] %>
+          <p class="pp4"><%= flash[:notbuy] %></p>
+        <% end %>
         <%= f.text_area :reply_content %>
         <div class="hennshinn">
           <%= f.submit'返信', class:"btn btn-primary" %>

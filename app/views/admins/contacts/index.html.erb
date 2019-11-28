@@ -6,7 +6,7 @@
 				<table>
 					<thead>
 					    <tr class="tr-contact">
-					      <th class="col-span"></th>
+					      <th class="col-span1"></th>
 					      <th class="received_history">受信履歴</th>
 					      <th class="user_name">ユーザー名</th>
 					      <th class="word-break">お問合せ内容</th>
@@ -17,7 +17,14 @@
 			          <% @contacts.each do |f| %>
 			            <tr>
 			              <td>
-			              	
+			              	<% if f.status == false %>
+			              		未回答
+			              	<% else %>
+			              		<div class="contact-ture">
+			              			回答済
+			              		</div>
+			              	<% end %>
+
 			              </td>
 			              <td>
 			  				<%= f.created_at.strftime("%Y-%m-%d %H:%M") %>
