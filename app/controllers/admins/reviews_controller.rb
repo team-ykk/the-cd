@@ -11,6 +11,7 @@ class Admins::ReviewsController < Admins::ApplicationController
          flash[:notice] = "successfully"
          redirect_to admins_item_path(@item)
       else
+        flash.now[:no_content] = "空欄を埋めてください"
         render action: :edit
       end
   end
