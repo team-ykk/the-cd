@@ -2,14 +2,13 @@
 
 <div class="container">
   <h2>ランキング（いいね順）</h2>
-  <p>（＊上位５０件まで表示）</p>
   <div class="row">
     <div class="col col-lg-2">
     </div>
     <div class="col col-lg-8">
       <table class="table table-striped">
 
-          <span>いいね順・<%= link_to "発売日順" , items_path %></span>
+          <span><%= link_to "発売日順" , items_path %>・いいね順（上位５０位まで表示）</span>
           <thead>
             <tr>
               <th>発売日</th>
