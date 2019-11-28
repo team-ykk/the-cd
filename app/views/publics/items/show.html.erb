@@ -62,7 +62,7 @@
 		<div class="col col-md-5">
 			<% @item.discs.each do |disc| %>
 			<p class="disc-song-disc"><%= disc.disc_name %></p>
-			<% disc.songs.each do |song| %>
+			<% disc.songs.order(:song_number).each do |song| %>
 			<p class="disc-song-song"><%= song.song_name %></p>
 			<% end %>
 			<% end %>
