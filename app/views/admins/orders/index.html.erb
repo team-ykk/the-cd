@@ -41,6 +41,7 @@
           <p>住所:<%= @tests[f.address.prefecture_id] %><%= f.address.address %></p>
           <P>商品の発送状況＝＞ <%= f.status %></P>
           <p><%= link_to '発送状況を変更する',edit_admins_order_path(f.id), class:"btn btn-primary" %></p>
+          <p>支払い方法：<%= f.payment %></p>
           <p>価格総計</p>
           <p class="pp4"><%= f.total_price.round.to_s(:delimited, delimiter: ',')%>円(税込)</p>
         </div>

@@ -32,9 +32,9 @@
 					<div class="order-bottom">
 						<h4>支払い方法</h4>
 							<label>
-								<%= f.radio_button :payment, :aaa, {:checked => true} %>銀行振込
-								<%= f.radio_button :payment, :iii %>クレジットカード
-								<%= f.radio_button :payment, :uuu %>代引き
+								<%= f.radio_button :payment, :銀行振込, {:checked => true} %>銀行振込
+								<%= f.radio_button :payment, :クレジットカード %>クレジットカード
+								<%= f.radio_button :payment, :代引き %>代引き
 							</label>
 						<h4>送料　全国一律¥<%= @freight.postage.round.to_s(:delimited, delimiter: ',')%>円(税込)-</h4>
 						<h4>合計金額<span><%= ((@cart_total_price) + (@freight.postage)).round.to_s(:delimited, delimiter: ',')%>円(税込)</span></h4>
